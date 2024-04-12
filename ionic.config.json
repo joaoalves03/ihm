@@ -1,0 +1,7 @@
+{
+  "name": "ihm-projeto",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
