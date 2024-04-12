@@ -1,0 +1,25 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="top-text">
+    <div class="title">Bem-vindo!</div>
+    <div>Insere as tuas credenciais para continuar.</div>
+  </div>
+
+  <p class="go-input-label">E-mail</p>
+  <ion-input class="go-input" placeholder="Insere aqui o teu email"></ion-input>
+  <p class="go-input-label">Palavra-passe</p>
+  <ion-input class="go-input" placeholder="Insere aqui a tua palavra-passe"></ion-input>
+
+  <ion-button class="login">Entrar</ion-button>
+  <div class="extra-actions">
+    <div class="ion-text-center">Ainda não tens conta? <a routerLink="/register">Regista-te</a></div>
+    <div class="ion-text-center"><a routerLink="/forgot-password">Esqueceste-te da tua palavra-passe?</a></div>
+  </div>
+</ion-content>
