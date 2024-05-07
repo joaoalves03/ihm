@@ -1,0 +1,15 @@
+.input {
+  @apply flex flex-col gap-1;
+
+  label {
+    @apply font-semibold;
+  }
+
+  div {
+    @apply flex items-center gap-2 border-gray-300 border-2 rounded-3xl px-4 py-2;
+
+    span {
+      color: var(--ion-color-primary);
+    }
+  }
+}

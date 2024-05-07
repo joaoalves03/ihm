@@ -1,0 +1,31 @@
+<div class="flex flex-col w-full h-full items-center">
+  <div class="flex flex-col w-full relative">
+    <img class="h-48 object-cover" src="https://picsum.photos/400/600" alt="">
+    <img class="w-36 rounded-full absolute left-1/2 top-1/2 -translate-x-1/2" src="https://thispersondoesnotexist.com/" alt="">
+  </div>
+  <div class="pt-16 pb-8 text-xl font-semibold">Username</div>
+  <form class="flex flex-col gap-4">
+    <div class="input">
+      <label for="email">Email</label>
+      <div>
+        <span class="material-icons">home</span>
+        <ion-input id="email" placeholder="xyz@gmail.com"></ion-input>
+      </div>
+    </div>
+    <div class="input">
+      <label for="tlm">Telemóvel</label>
+      <div>
+        <span class="material-icons">phone</span>
+        <ion-input id="tlm" placeholder="+351 966 673 833"></ion-input>
+      </div>
+    </div>
+    <div class="input">
+      <label for="password">Palavra-passe</label>
+      <div>
+        <span class="material-icons">lock</span>
+        <ion-input type="password" id="password" placeholder="bananas123*"></ion-input>
+      </div>
+    </div>
+    <ion-button class="px-12">Guardar</ion-button>
+  </form>
+</div>
