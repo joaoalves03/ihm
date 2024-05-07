@@ -26,3 +26,9 @@
 @import "@ionic/angular/css/flex-utils.css";
 
 @import "theme/gourmetgo";
+
+@import '@material-design-icons/font';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

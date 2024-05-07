@@ -1,20 +1,16 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-searchbar></ion-searchbar>
+  <app-navbar></app-navbar>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="flex flex-col gap-2 p-4">
+    <div class="text-2xl font-semibold">Boa tarde, utilizador!</div>
+    <div class="text-xl">Perto de si</div>
+    <app-restaurant-card></app-restaurant-card>
+    <div class="text-xl">Sugestões</div>
+    <div class="overflow-hidden">
+      <app-restaurant-card-simple></app-restaurant-card-simple>
+      <app-restaurant-card-simple></app-restaurant-card-simple>
+      <app-restaurant-card-simple></app-restaurant-card-simple>
+    </div>
   </div>
 </ion-content>
