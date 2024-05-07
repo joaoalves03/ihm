@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
-import {NavbarComponent} from "../components/navbar/navbar.component"
 import {RestaurantCardComponent} from "../components/restaurant-card/restaurant-card.component"
 import {RestaurantCardSimpleComponent} from "../components/restaurant-card-simple/restaurant-card-simple.component"
 
@@ -17,6 +16,6 @@ import {RestaurantCardSimpleComponent} from "../components/restaurant-card-simpl
     IonicModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage, NavbarComponent, RestaurantCardComponent, RestaurantCardSimpleComponent]
+  declarations: [HomePage, RestaurantCardComponent, RestaurantCardSimpleComponent]
 })
 export class HomePageModule {}

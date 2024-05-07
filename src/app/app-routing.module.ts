@@ -1,35 +1,46 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import {NavbarPage} from "./navbar/navbar.page"
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    component: NavbarPage,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'home',
+      },
+      {
+        path: 'login',
+        loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+      },
+      {
+        path: 'welcome',
+        loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule)
+      },
+      {
+        path: 'register',
+        loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+      },
+      {
+        path: 'forgot-password',
+        loadChildren: () => import('./forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
+      },
+      {
+        path: 'register-complete',
+        loadChildren: () => import('./register-complete/register-complete.module').then( m => m.RegisterCompletePageModule)
+      },
+      {
+        path: 'home',
+        loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+      }
+    ]
   },
   {
-    path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
-  },
-  {
-    path: 'welcome',
-    loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule)
-  },
-  {
-    path: 'register',
-    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
-  },
-  {
-    path: 'forgot-password',
-    loadChildren: () => import('./forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
-  },
-  {
-    path: 'register-complete',
-    loadChildren: () => import('./register-complete/register-complete.module').then( m => m.RegisterCompletePageModule)
+    path: 'navbar',
+    loadChildren: () => import('./navbar/navbar.module').then( m => m.NavbarPageModule)
   },
 ];
 
