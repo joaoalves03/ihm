@@ -3,7 +3,7 @@
     <ion-searchbar placeholder="Pesquisar"></ion-searchbar>
     <div class="text-2xl font-semibold">Boa tarde, utilizador!</div>
     <div class="text-xl">Perto de si</div>
-    <app-restaurant-card></app-restaurant-card>
+    <app-restaurant-card (click)="openRestaurantDetails()"></app-restaurant-card>
     <div class="text-xl">Sugestões</div>
     <div class="flex gap-4 overflow-x-auto p-2">
       <app-restaurant-card-simple></app-restaurant-card-simple>
