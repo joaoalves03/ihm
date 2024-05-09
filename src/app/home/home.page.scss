@@ -25,3 +25,13 @@
 #container a {
   text-decoration: none;
 }
+
+ion-searchbar {
+  --background: #E6E7E9;
+  --color: #9CA3AF;
+  --icon-color: #9CA3AF;
+  --border-radius: 1em;
+  --box-shadow: none;
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+}
