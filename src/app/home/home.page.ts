@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {NavController} from "@ionic/angular"
+import {SupabaseService} from "../supabase/supabase.service"
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,10 @@ import {NavController} from "@ionic/angular"
 })
 export class HomePage {
 
-  constructor(private navCtrl: NavController) {}
+  constructor(private navCtrl: NavController) {
+    let a = new SupabaseService()
+    a.test()
+  }
 
   openRestaurantDetails() {
     this.navCtrl.navigateForward('/restaurant-details')
