@@ -13,13 +13,21 @@
   </div>
 
   <p class="go-input-label">E-mail</p>
-  <ion-input class="go-input" placeholder="Insere aqui o teu email"></ion-input>
+  <ion-input type="email" class="go-input" placeholder="Insere aqui o teu email" [(ngModel)]="email"></ion-input>
   <p class="go-input-label">Palavra-passe</p>
-  <ion-input class="go-input" placeholder="Insere aqui a tua palavra-passe"></ion-input>
+  <ion-input type="password" class="go-input" placeholder="Insere aqui a tua palavra-passe"
+             [(ngModel)]="password"></ion-input>
 
-  <ion-button class="login">Entrar</ion-button>
+  <ion-button class="login" (click)="signIn()" [disabled]="loading">Entrar</ion-button>
   <div class="extra-actions">
     <div class="ion-text-center">Ainda não tens conta? <a routerLink="/register">Regista-te</a></div>
     <div class="ion-text-center"><a routerLink="/forgot-password">Esqueceste-te da tua palavra-passe?</a></div>
   </div>
+
+  <ion-toast
+    [isOpen]="isToastOpen"
+    message="Credenciais incorretas"
+    [duration]="5000"
+    (didDismiss)="setOpen(false)"
+  ></ion-toast>
 </ion-content>

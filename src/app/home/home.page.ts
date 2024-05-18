@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {NavController} from "@ionic/angular"
-import {SupabaseService} from "../supabase/supabase.service"
 
 @Component({
   selector: 'app-home',
@@ -10,8 +9,7 @@ import {SupabaseService} from "../supabase/supabase.service"
 export class HomePage {
 
   constructor(private navCtrl: NavController) {
-    let a = new SupabaseService()
-    a.test()
+
   }
 
   openRestaurantDetails() {
