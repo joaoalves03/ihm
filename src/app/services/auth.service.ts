@@ -4,7 +4,7 @@ import {environment} from "../../environments/environment"
 import {BehaviorSubject} from "rxjs"
 import {Router} from "@angular/router"
 
-// https://www.youtube.com/watch?v=jmCiI_OSarA
+// https://supabase.com/blog/building-a-realtime-trello-board-with-supabase-and-angular
 
 @Injectable({
   providedIn: 'root'
@@ -20,24 +20,36 @@ export class AuthService {
     )
 
     const user = this.supabase.auth.getUser()
-    if(user) {
+    if (user) {
       this._currentUser.next(user)
     } else {
       this._currentUser.next(false)
-      this.router.navigateByUrl("/login", {replaceUrl: true})
     }
 
     this.supabase.auth.onAuthStateChange((event, session) => {
-      if(event == 'SIGNED_IN') {
+      if (event == 'SIGNED_IN') {
         this._currentUser.next(session?.user)
       } else {
         this._currentUser.next(false)
+        this.router.navigateByUrl('/login', {replaceUrl: true})
       }
     })
   }
 
   signIn(email: string, password: string) {
     return this.supabase.auth.signInWithPassword({email, password})
+  }
+
+  signUp(email: string, password: string, name: string) {
+    return this.supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          name: name
+        }
+      }
+    })
   }
 
   signOut() {

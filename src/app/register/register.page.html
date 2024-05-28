@@ -13,14 +13,22 @@
   </div>
 
   <p class="go-input-label">Nome</p>
-  <ion-input class="go-input" placeholder="Nome completo"></ion-input>
+  <ion-input class="go-input" placeholder="Nome de exibição" [(ngModel)]="name"></ion-input>
   <p class="go-input-label">E-mail</p>
-  <ion-input class="go-input" placeholder="Insere aqui o teu email"></ion-input>
+  <ion-input class="go-input" placeholder="Insere aqui o teu email" [(ngModel)]="email"></ion-input>
   <p class="go-input-label">Palavra-passe</p>
-  <ion-input class="go-input" placeholder="Insere aqui a tua palavra-passe"></ion-input>
+  <ion-input class="go-input" placeholder="Insere aqui a tua palavra-passe" [(ngModel)]="password"
+             (click)="signUp()" [disabled]="loading"></ion-input>
 
   <ion-button class="register">Registar</ion-button>
   <div class="extra-actions">
     <div class="ion-text-center">Já tens conta? <a routerLink="/login">Entrar</a></div>
   </div>
+
+  <ion-toast
+    [isOpen]="isToastOpen"
+    message="Erro ao criar conta"
+    [duration]="5000"
+    (didDismiss)="setOpen(false)"
+  ></ion-toast>
 </ion-content>
