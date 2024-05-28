@@ -1,7 +1,11 @@
 <ion-content [fullscreen]="true">
   <div class="flex flex-col gap-2 p-4">
     <ion-searchbar placeholder="Pesquisar"></ion-searchbar>
-    <div class="text-2xl font-semibold">Boa tarde, {{ (user | async)?.email }}!</div>
+    <div class="text-2xl font-semibold">{{
+        (user | async)?.user_metadata?.name === null
+          ? 'Olá, (user | async)?.user_metadata?.name'
+          : 'Bem-vindo de volta!'
+      }}</div>
     <div class="text-xl">Perto de si</div>
     <app-restaurant-card (click)="openRestaurantDetails()"></app-restaurant-card>
     <div class="text-xl">Sugestões</div>

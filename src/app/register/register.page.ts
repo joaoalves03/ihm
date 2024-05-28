@@ -31,7 +31,7 @@ export class RegisterPage implements OnInit {
     this.loading = false
 
     if(result.error) this.setOpen(true)
-    else await this.router.navigateByUrl("/home")
+    else await this.router.navigateByUrl("/register-complete")
   }
 
   setOpen(value: boolean) {
