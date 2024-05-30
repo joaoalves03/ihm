@@ -22,7 +22,7 @@ export class RegisterPage implements OnInit {
   }
 
   async signUp() {
-    this.loading = true
+    /*this.loading = true
     const result = await this.auth.signUp(
       this.email,
       this.password,
@@ -31,7 +31,7 @@ export class RegisterPage implements OnInit {
     this.loading = false
 
     if(result.error) this.setOpen(true)
-    else await this.router.navigateByUrl("/register-complete")
+    else await this.router.navigateByUrl("/register-complete")*/
   }
 
   setOpen(value: boolean) {

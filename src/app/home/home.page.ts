@@ -8,7 +8,7 @@ import {AuthService} from "../services/auth.service"
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  user = this.auth.currentUser
+  //user = this.auth.currentUser
 
   constructor(
     private navCtrl: NavController,

@@ -1,17 +1,18 @@
 import {Injectable} from "@angular/core"
 import {createClient, SupabaseClient, User} from "@supabase/supabase-js"
 import {environment} from "../../environments/environment"
-import {BehaviorSubject} from "rxjs"
+import {BehaviorSubject, Observable} from "rxjs"
 import {Router} from "@angular/router"
 
 // https://supabase.com/blog/building-a-realtime-trello-board-with-supabase-and-angular
+// https://www.youtube.com/watch?v=RtgQT4sdCrY
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private supabase: SupabaseClient
-  private _currentUser: BehaviorSubject<boolean | User | any> = new BehaviorSubject(null)
+  private currentUser: BehaviorSubject<boolean | User | any> = new BehaviorSubject(null)
 
   constructor(private router: Router) {
     this.supabase = createClient(
@@ -19,44 +20,54 @@ export class AuthService {
       environment.supabaseKey,
     )
 
-    const user = this.supabase.auth.getUser()
-    if (user) {
-      this._currentUser.next(user)
-    } else {
-      this._currentUser.next(false)
+    this.supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+        console.log('SET USER: ', session)
+        this.currentUser.next(session?.user)
+      } else {
+        this.currentUser.next(false)
+      }
+    })
+
+    this.loadUser()
+  }
+
+  async loadUser() {
+    if (this.currentUser.value) {
+      return
     }
 
-    this.supabase.auth.onAuthStateChange((event, session) => {
-      if (event == 'SIGNED_IN') {
-        this._currentUser.next(session?.user)
-      } else {
-        this._currentUser.next(false)
-        this.router.navigateByUrl('/login', {replaceUrl: true})
-      }
-    })
+    const user = await this.supabase.auth.getUser()
+
+    if (user.data.user) {
+      this.currentUser.next(user.data.user)
+    } else {
+      this.currentUser.next(false)
+    }
   }
 
-  signIn(email: string, password: string) {
-    return this.supabase.auth.signInWithPassword({email, password})
+  getCurrentUser(): Observable<User | boolean> {
+    return this.currentUser.asObservable();
   }
 
-  signUp(email: string, password: string, name: string) {
-    return this.supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: {
-          name: name
-        }
-      }
-    })
+  getCurrentUserId() {
+    if (this.currentUser.value) {
+      return (this.currentUser.value as User).id
+    } else {
+      return null
+    }
   }
 
-  signOut() {
-    return this.supabase.auth.signOut()
+  signUp(credentials: {email: string; password: string}) {
+    return this.supabase.auth.signUp(credentials)
   }
 
-  get currentUser() {
-    return this._currentUser.asObservable()
+  signIn(credentials: {email: string; password: string}) {
+    return this.supabase.auth.signInWithPassword(credentials)
+  }
+
+  async signOut() {
+    await this.supabase.auth.signOut()
+    this.router.navigateByUrl("/login", {replaceUrl: true})
   }
 }

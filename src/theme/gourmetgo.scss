@@ -26,3 +26,7 @@
   width: 1.5em;
   height: 1.5em;
 }
+
+.extra-actions {
+  @apply flex flex-col pt-4
+}
