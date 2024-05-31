@@ -5,8 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
-import {RestaurantCardComponent} from "../components/restaurant-card/restaurant-card.component"
-import {RestaurantCardSimpleComponent} from "../components/restaurant-card-simple/restaurant-card-simple.component"
+import {RestaurantCardComponent} from "../../components/restaurant-card/restaurant-card.component"
+import {RestaurantCardSimpleComponent} from "../../components/restaurant-card-simple/restaurant-card-simple.component"
 
 
 @NgModule({

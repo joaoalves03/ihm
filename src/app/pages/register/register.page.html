@@ -8,11 +8,24 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
   <div class="top-text">
-    <div class="title">Bem-vindo!</div>
-    <div>Insere as tuas credenciais para continuar.</div>
+    <div class="title">Registar</div>
+    <div>Cria agora a tua conta!</div>
   </div>
 
-  <form (ngSubmit)="signIn()" [formGroup]="credentials">
+  <form (ngSubmit)="signUp()" [formGroup]="credentials">
+    <ion-item>
+      <ion-label id="nameLabel" class="go-input-label" position="stacked">Nome</ion-label>
+      <ion-input
+        aria-labelledby="nameLabel"
+        type="text"
+        inputmode="text"
+        placeholder="Nome de exibição"
+        formControlName="name"
+      ></ion-input>
+      <ion-note slot="error"
+                *ngIf="(name.dirty || name.touched) && name.errors"
+      >Por favor insira um nome</ion-note>
+    </ion-item>
 
     <ion-item>
       <ion-label id="emailLabel" class="go-input-label" position="stacked">E-mail</ion-label>
@@ -47,11 +60,10 @@
       expand="block"
       [disabled]="credentials.invalid"
       strong="true"
-    >Entrar</ion-button>
-
-    <div class="extra-actions">
-      <ion-button routerLink="/register" color="secondary" expand="block">Registar</ion-button>
-      <ion-button routerLink="/forgot-password" color="secondary" expand="block">Esqueci-me da palavra-passe</ion-button>
-    </div>
+    >Registar</ion-button>
   </form>
+
+  <div class="extra-actions">
+    <div class="ion-text-center">Já tens conta? <a class="link" routerLink="/login">Iniciar sessão</a></div>
+  </div>
 </ion-content>

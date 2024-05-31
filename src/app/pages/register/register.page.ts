@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../services/auth.service"
+import { Component } from '@angular/core';
+import {AuthService} from "../../services/auth.service"
 import {Router} from "@angular/router"
 import {FormBuilder, Validators} from "@angular/forms"
 import {AlertController, LoadingController} from "@ionic/angular"
@@ -9,7 +9,7 @@ import {AlertController, LoadingController} from "@ionic/angular"
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
 })
-export class RegisterPage implements OnInit {
+export class RegisterPage {
   credentials = this.fb.nonNullable.group({
     name: ['', Validators.required],
     email: ['', Validators.required],
@@ -51,24 +51,10 @@ export class RegisterPage implements OnInit {
         await this.router.navigateByUrl("/register-complete")
       }
     })
-
-    /*this.loading = true
-    const result = await this.auth.signUp(
-      this.email,
-      this.password,
-      this.name
-    )
-    this.loading = false
-
-    if(result.error) this.setOpen(true)
-    else await this.router.navigateByUrl("/register-complete")*/
-  }
-
-  ngOnInit() {
   }
 
   async showAlert(header: string, message: string) {
-    const alert = await this.alertController.create({
+    await this.alertController.create({
       header,
       message,
       buttons: ['OK']

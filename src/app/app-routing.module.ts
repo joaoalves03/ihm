@@ -1,28 +1,28 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import {NavbarPage} from "./navbar/navbar.page"
+import {NavbarPage} from "./pages/navbar/navbar.page"
 import {AuthGuard} from "./guards/auth.guard"
 
 const routes: Routes = [
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
     path: 'welcome',
-    loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule),
+    loadChildren: () => import('./pages/welcome/welcome.module').then( m => m.WelcomePageModule),
   },
   {
     path: 'register',
-    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
   },
   {
     path: 'forgot-password',
-    loadChildren: () => import('./forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
+    loadChildren: () => import('./pages/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
   },
   {
     path: 'register-complete',
-    loadChildren: () => import('./register-complete/register-complete.module').then( m => m.RegisterCompletePageModule)
+    loadChildren: () => import('./pages/register-complete/register-complete.module').then( m => m.RegisterCompletePageModule)
   },
   {
     path: '',
@@ -35,24 +35,24 @@ const routes: Routes = [
       },
       {
         path: 'home',
-        loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+        loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
         canActivate: [AuthGuard],
       },
       {
         path: 'profile',
-        loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule),
+        loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule),
         canActivate: [AuthGuard],
       },
     ]
   },
   {
     path: 'restaurant-details',
-    loadChildren: () => import('./restaurant-details/restaurant-details.module').then( m => m.RestaurantDetailsPageModule),
+    loadChildren: () => import('./pages/restaurant-details/restaurant-details.module').then( m => m.RestaurantDetailsPageModule),
     canActivate: [AuthGuard],
   },
   {
     path: 'navbar',
-    loadChildren: () => import('./navbar/navbar.module').then( m => m.NavbarPageModule)
+    loadChildren: () => import('./pages/navbar/navbar.module').then( m => m.NavbarPageModule)
   },
 ];
 

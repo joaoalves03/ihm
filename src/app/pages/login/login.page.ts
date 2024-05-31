@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthService} from "../services/auth.service"
+import {Component} from '@angular/core';
+import {AuthService} from "../../services/auth.service"
 import {Router} from "@angular/router"
 import {FormBuilder, Validators} from "@angular/forms"
 import {AlertController, LoadingController} from "@ionic/angular"
@@ -9,7 +9,7 @@ import {AlertController, LoadingController} from "@ionic/angular"
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
   credentials = this.fb.nonNullable.group({
     email: ['', Validators.required],
     password: ['', Validators.required]
@@ -38,9 +38,6 @@ export class LoginPage implements OnInit {
     return this.credentials.controls.password
   }
 
-  ngOnInit() {
-  }
-
   async signIn() {
     const loading = await this.loadingController.create()
     await loading.present()
@@ -54,7 +51,7 @@ export class LoginPage implements OnInit {
   }
 
   async showAlert(header: string, message: string) {
-    const alert = await this.alertController.create({
+    await this.alertController.create({
       header,
       message,
       buttons: ['OK']

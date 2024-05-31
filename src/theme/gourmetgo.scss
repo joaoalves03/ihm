@@ -28,5 +28,9 @@
 }
 
 .extra-actions {
-  @apply flex flex-col pt-4
+  @apply flex flex-col pt-4 gap-1
+}
+
+.link {
+  @apply underline font-bold
 }
