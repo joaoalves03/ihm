@@ -10,12 +10,15 @@ import {RestaurantCardSimpleComponent} from "../../components/restaurant-card-si
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    HomePageRoutingModule
-  ],
-  declarations: [HomePage, RestaurantCardComponent, RestaurantCardSimpleComponent]
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        HomePageRoutingModule
+    ],
+    exports: [
+        RestaurantCardSimpleComponent
+    ],
+    declarations: [HomePage, RestaurantCardComponent, RestaurantCardSimpleComponent]
 })
 export class HomePageModule {}
