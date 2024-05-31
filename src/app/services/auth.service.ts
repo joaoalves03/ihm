@@ -46,7 +46,7 @@ export class AuthService {
     }
   }
 
-  getCurrentUser(): Observable<User | boolean> {
+  getCurrentUser(): Observable<User> {
     return this.currentUser.asObservable();
   }
 

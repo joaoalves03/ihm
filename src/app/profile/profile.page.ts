@@ -7,14 +7,21 @@ import {Router} from "@angular/router"
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
 })
-export class ProfilePage implements OnInit {
+export class ProfilePage {
+  user = this.auth.getCurrentUser()
+  name = 'Utilizador'
 
   constructor(
     private auth: AuthService,
     private router: Router
-  ) { }
-
-  ngOnInit() {
+  ) {
+    this.user.subscribe((user) => {
+      if(user) {
+        this.name = user.user_metadata['name'] !== undefined
+          ? user.user_metadata['name']
+          : 'Utilizador'
+      }
+    })
   }
 
   signOut() {
