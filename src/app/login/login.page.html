@@ -54,11 +54,4 @@
       <ion-button routerLink="/forgot-password" color="secondary" expand="block">Esqueci-me da palavra-passe</ion-button>
     </div>
   </form>
-
-  <ion-toast
-    [isOpen]="isToastOpen"
-    message="Credenciais incorretas"
-    [duration]="5000"
-    (didDismiss)="setOpen(false)"
-  ></ion-toast>
 </ion-content>

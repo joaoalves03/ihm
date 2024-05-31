@@ -10,9 +10,6 @@ import {AlertController, LoadingController} from "@ionic/angular"
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  loading: boolean = false;
-  isToastOpen: boolean = false;
-
   credentials = this.fb.nonNullable.group({
     email: ['', Validators.required],
     password: ['', Validators.required]
@@ -45,20 +42,13 @@ export class LoginPage implements OnInit {
   }
 
   async signIn() {
-    /*this.loading = true
-    //const result = await this.auth.signIn(this.email, this.password)
-    this.loading = false
-
-    if(result.error) this.setOpen(true)
-    else await this.router.navigateByUrl("/home")*/
-
     const loading = await this.loadingController.create()
     await loading.present()
 
     await this.auth.signIn(this.credentials.getRawValue()).then(async (data) => {
       await loading.dismiss()
       if (data.error) {
-        await this.showAlert('Login failed', data.error.message)
+        await this.showAlert('Falha ao iniciar sessão', data.error.message)
       }
     })
   }
@@ -69,9 +59,5 @@ export class LoginPage implements OnInit {
       message,
       buttons: ['OK']
     })
-  }
-
-  setOpen(value: boolean) {
-    this.isToastOpen = value
   }
 }

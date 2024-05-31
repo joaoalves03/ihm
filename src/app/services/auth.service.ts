@@ -58,8 +58,16 @@ export class AuthService {
     }
   }
 
-  signUp(credentials: {email: string; password: string}) {
-    return this.supabase.auth.signUp(credentials)
+  signUp(credentials: {name: string, email: string; password: string}) {
+    return this.supabase.auth.signUp({
+      email: credentials.email,
+      password: credentials.password,
+      options: {
+        data: {
+          name: credentials.name,
+        }
+      }
+    })
   }
 
   signIn(credentials: {email: string; password: string}) {
@@ -68,6 +76,6 @@ export class AuthService {
 
   async signOut() {
     await this.supabase.auth.signOut()
-    this.router.navigateByUrl("/login", {replaceUrl: true})
+    await this.router.navigateByUrl("/welcome", {replaceUrl: true})
   }
 }

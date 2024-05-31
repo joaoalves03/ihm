@@ -12,23 +12,58 @@
     <div>Cria agora a tua conta!</div>
   </div>
 
-  <p class="go-input-label">Nome</p>
-  <ion-input type="text" class="go-input" placeholder="Nome de exibição" [(ngModel)]="name"></ion-input>
-  <p class="go-input-label">E-mail</p>
-  <ion-input type="email" class="go-input" placeholder="Insere aqui o teu email" [(ngModel)]="email"></ion-input>
-  <p class="go-input-label">Palavra-passe</p>
-  <ion-input type="password" class="go-input" placeholder="Insere aqui a tua palavra-passe"
-             [(ngModel)]="password"></ion-input>
+  <form (ngSubmit)="signUp()" [formGroup]="credentials">
+    <ion-item>
+      <ion-label id="nameLabel" class="go-input-label" position="stacked">Nome</ion-label>
+      <ion-input
+        aria-labelledby="nameLabel"
+        type="text"
+        inputmode="text"
+        placeholder="Nome de exibição"
+        formControlName="name"
+      ></ion-input>
+      <ion-note slot="error"
+                *ngIf="(name.dirty || name.touched) && name.errors"
+      >Por favor insira um nome</ion-note>
+    </ion-item>
 
-  <ion-button class="register" (click)="signUp()" [disabled]="loading">Registar</ion-button>
+    <ion-item>
+      <ion-label id="emailLabel" class="go-input-label" position="stacked">E-mail</ion-label>
+      <ion-input
+        aria-labelledby="emailLabel"
+        type="email"
+        inputmode="email"
+        placeholder="Insere aqui o teu email"
+        formControlName="email"
+      ></ion-input>
+      <ion-note slot="error"
+                *ngIf="(email.dirty || email.touched) && email.errors"
+      >Por favor insira o seu e-mail</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label id="passwordLabel" class="go-input-label" position="stacked">Palavra-passe</ion-label>
+      <ion-input
+        aria-labelledby="passwordLabel"
+        type="password"
+        inputmode="password"
+        placeholder="Insere aqui a tua palavra-passe"
+        formControlName="password"
+      ></ion-input>
+      <ion-note slot="error"
+                *ngIf="(password.dirty || password.touched) && password.errors"
+      >Por favor insira uma palavra-passe</ion-note>
+    </ion-item>
+
+    <ion-button
+      type="submit"
+      expand="block"
+      [disabled]="credentials.invalid"
+      strong="true"
+    >Registar</ion-button>
+  </form>
+
   <div class="extra-actions">
     <div class="ion-text-center">Já tens conta? <a routerLink="/login">Iniciar sessão</a></div>
   </div>
-
-  <ion-toast
-    [isOpen]="isToastOpen"
-    message="Erro ao criar conta"
-    [duration]="5000"
-    (didDismiss)="setOpen(false)"
-  ></ion-toast>
 </ion-content>
