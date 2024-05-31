@@ -43,12 +43,12 @@ const routes: Routes = [
         loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule),
         canActivate: [AuthGuard],
       },
-      {
-        path: 'restaurant-details',
-        loadChildren: () => import('./restaurant-details/restaurant-details.module').then( m => m.RestaurantDetailsPageModule),
-        canActivate: [AuthGuard],
-      },
     ]
+  },
+  {
+    path: 'restaurant-details',
+    loadChildren: () => import('./restaurant-details/restaurant-details.module').then( m => m.RestaurantDetailsPageModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'navbar',
