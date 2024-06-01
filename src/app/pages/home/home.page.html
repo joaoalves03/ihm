@@ -1,16 +1,20 @@
 <ion-content [fullscreen]="true">
-  <div class="flex flex-col gap-2 p-4">
-    <ion-searchbar placeholder="Pesquisar"></ion-searchbar>
-    <div class="text-2xl font-semibold">{{
-        welcome_message
-      }}</div>
-    <div class="text-xl">Perto de si</div>
-    <app-restaurant-card (click)="openRestaurantDetails()"></app-restaurant-card>
-    <div class="text-xl">Sugestões</div>
-    <div class="flex gap-4 overflow-x-auto py-8">
-      <app-restaurant-card-simple></app-restaurant-card-simple>
-      <app-restaurant-card-simple></app-restaurant-card-simple>
-      <app-restaurant-card-simple></app-restaurant-card-simple>
+  <div *ngIf="restaurants.length === 0, else content">A carregar... LOL</div>
+
+  <ng-template #content>
+    <div class="flex flex-col gap-2 p-4">
+      <ion-searchbar placeholder="Pesquisar"></ion-searchbar>
+      <div class="text-2xl font-semibold">{{
+          welcome_message
+        }}</div>
+      <div class="text-xl">Perto de si</div>
+      <app-restaurant-card (click)="openRestaurantDetails()" [restaurant]="restaurants[0]"></app-restaurant-card>
+      <div class="text-xl">Sugestões</div>
+      <div class="flex gap-4 overflow-x-auto py-8">
+        <app-restaurant-card-simple [restaurant]="restaurants[1]"></app-restaurant-card-simple>
+        <app-restaurant-card-simple [restaurant]="restaurants[2]"></app-restaurant-card-simple>
+        <app-restaurant-card-simple [restaurant]="restaurants[3]"></app-restaurant-card-simple>
+      </div>
     </div>
-  </div>
+  </ng-template>
 </ion-content>
