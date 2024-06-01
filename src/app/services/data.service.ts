@@ -20,4 +20,16 @@ export class DataService {
 
     return data as Restaurant[]
   }
+
+  async getRestaurant(id: number): Promise<Restaurant> {
+    let { data, error } = await this.supabase
+      .from('restaurants')
+      .select('*')
+      .eq('id', id)
+      .single()
+
+    return data as Restaurant
+  }
+
+
 }

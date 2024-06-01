@@ -30,8 +30,8 @@ export class HomePage implements OnInit {
     })
   }
 
-  openRestaurantDetails() {
-    this.navCtrl.navigateForward('/restaurant-details')
+  openRestaurantDetails(id: number) {
+    this.navCtrl.navigateForward(`/restaurant-details/${id}`)
   }
 
   async ngOnInit() {

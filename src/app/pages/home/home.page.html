@@ -8,7 +8,7 @@
           welcome_message
         }}</div>
       <div class="text-xl">Perto de si</div>
-      <app-restaurant-card (click)="openRestaurantDetails()" [restaurant]="restaurants[0]"></app-restaurant-card>
+      <app-restaurant-card (click)="openRestaurantDetails(restaurants[0].id)" [restaurant]="restaurants[0]"></app-restaurant-card>
       <div class="text-xl">Sugestões</div>
       <div class="flex gap-4 overflow-x-auto py-8">
         <app-restaurant-card-simple [restaurant]="restaurants[1]"></app-restaurant-card-simple>

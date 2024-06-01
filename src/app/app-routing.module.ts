@@ -50,7 +50,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'restaurant-details',
+    path: 'restaurant-details/:id',
     loadChildren: () => import('./pages/restaurant-details/restaurant-details.module').then( m => m.RestaurantDetailsPageModule),
     canActivate: [AuthGuard],
   },

@@ -8,72 +8,71 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">restaurant-details</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <div>
-    <div class="flex flex-row items-center justify-between p-4">
-      <div>
-        <div class="font-semibold text-xl">Coral</div>
-        <div class="flex flex-row">
-          <span class="material-icons">location_on</span>
-          <div>Praia do Coral, Viana do Castelo</div>
-        </div>
-      </div>
-      <div class="flex">
-        <div>4.5</div>
-        <span class="material-icons">star</span>
-      </div>
-    </div>
-    <div>[IMAGENS]</div>
-    <div class="flex items-center justify-between p-4">
-      <div>
-        <div class="flex">
-          <span class="material-icons">schedule</span>
-          <div>Aberto hoje</div>
-        </div>
-        <div>10:00 - 02:00</div>
-      </div>
-      <div class="flex">
-        <span class="material-icons">turn_right</span>
-        <div>Visitar restaurante</div>
-      </div>
-    </div>
-    <div>
-      [[ICONS]]
-    </div>
-    <div class="flex justify-center items-center">
-      <ion-button>Avaliações</ion-button>
-    </div>
-    <div class="flex flex-row items-center justify-between mb-4">
-      <div class="font-semibold">Outros Restaurantes</div>
-      <div class="text-blue-500">Ver tudo ></div>
-    </div>
+  <div *ngIf="restaurant === undefined, else content">A carregar...</div>
 
-    <!-- Outros Restaurantes secção -->
-    <div class="space-y-4">
-      <ion-item>
-        <ion-thumbnail slot="start">
-          <img src="https://picsum.photos/300/500" />
-        </ion-thumbnail>
-        <ion-label>
-          <h3>Braseiro das Mimosas</h3>
-          <p>Abelheira, Viana do Castelo</p>
-        </ion-label>
-        <ion-button fill="outline" slot="end">Ver</ion-button>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail slot="start">
-          <img src="https://picsum.photos/300/500" />
-        </ion-thumbnail>
-        <ion-label>
-          <h3>McDonald's</h3>
-          <p>Papanata, Viana do Castelo</p>
-        </ion-label>
-        <ion-button fill="outline" slot="end">Ver</ion-button>
-      </ion-item>
+  <ng-template #content>
+    <div>
+      <div class="flex flex-row items-center justify-between p-4 gap-2">
+        <div class="flex flex-col gap-2">
+          <div class="font-semibold text-xl">{{ restaurant?.name }}</div>
+          <div class="flex flex-row">
+            <span class="material-icons text-[--ion-color-primary]">location_on</span>
+            <div class="text-gray-500">{{ restaurant?.street }}</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-1">
+          <div class="text-2xl font-bold">?</div>
+          <span class="material-icons-sharp text-gray-300">star</span>
+        </div>
+      </div>
+      <div class="flex w-full justify-center">Não existem imagens disponíveis</div>
+      <div class="flex items-center justify-between p-4">
+        <div>
+          <div class="flex justify-center items-center gap-1">
+            <span class="material-icons text-[--ion-color-primary]">schedule</span>
+            <div>Aberto hoje</div>
+          </div>
+          <div>{{ getTodaySchedule() }}</div>
+        </div>
+        <div class="flex text-blue-500 gap-2">
+          <span class="material-icons">turn_right</span>
+          <div>Visitar restaurante</div>
+        </div>
+      </div>
+      <div class="px-4">
+        [[ICONS]]
+      </div>
+      <div class="flex justify-center items-center">
+        <ion-button>Avaliações</ion-button>
+      </div>
+      <div class="flex flex-row items-center justify-between my-4 mx-4">
+        <div class="font-semibold">Outros Restaurantes</div>
+        <div class="text-blue-500">Ver tudo ></div>
+      </div>
+
+      <!-- Outros Restaurantes secção -->
+      <div class="space-y-4">
+        <ion-item>
+          <ion-thumbnail slot="start">
+            <img src="https://picsum.photos/300/500" />
+          </ion-thumbnail>
+          <ion-label>
+            <h3>Braseiro das Mimosas</h3>
+            <p>Abelheira, Viana do Castelo</p>
+          </ion-label>
+          <ion-button fill="outline" slot="end">Ver</ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-thumbnail slot="start">
+            <img src="https://picsum.photos/300/500" />
+          </ion-thumbnail>
+          <ion-label>
+            <h3>McDonald's</h3>
+            <p>Papanata, Viana do Castelo</p>
+          </ion-label>
+          <ion-button fill="outline" slot="end">Ver</ion-button>
+        </ion-item>
+      </div>
     </div>
-  </div>
+  </ng-template>
 </ion-content>
