@@ -3,17 +3,39 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Ver Avaliação</ion-title>
+    <ion-title>Ver avaliação</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <div class="userreview-header">
-   <h2>Avaliação do José
-     <ion-avatar slot="start">
-       <img src="https://picsum.photos/400/600">
-     </ion-avatar>
-   </h2>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="userreview-header flex justify-between items-center m-4">
+    <h2 class="text-lg m-0">Avaliação de “José”</h2>
+    <ion-avatar slot="end">
+      <img src="https://picsum.photos/200/200" class="rounded-full">
+    </ion-avatar>
+  </div>
 
+  <div class="review-rating flex items-center m-4">
+    <span class="text-2xl mr-2">5</span>
+    <span class="material-icons">star</span>
+  </div>
+
+  <div class="review-content m-4">
+    <p>Um espaço muito acolhedor em Viana. Os pratos têm uma apresentação muito cuidada. A comida é muito boa, tanto as entradas, como os pratos principais assim como as sobremesas. Não é caro, tendo em conta a qualidade da comida.</p>
+  </div>
+
+  <div class="review-images flex space-x-2 m-4">
+    <img src="https://picsum.photos/200/200" class="w-1/3 rounded-lg" alt="Food Image 1">
+    <img src="https://picsum.photos/200/201" class="w-1/3 rounded-lg" alt="Food Image 2">
+    <img src="https://picsum.photos/200/202" class="w-1/3 rounded-lg" alt="Food Image 3">
+  </div>
+
+  <div class="review-feedback m-4">
+    <p class="font-bold">Achou esta avaliação útil?</p>
+    <div class="flex space-x-4 mt-2">
+      <span class="material-icons">thumb_up</span>
+      <span class="material-icons">thumb_down</span>
+
+    </div>
   </div>
 </ion-content>
