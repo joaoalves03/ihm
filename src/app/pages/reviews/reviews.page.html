@@ -1,0 +1,61 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Avaliações</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="review-header">
+    <h2>Coral</h2>
+    <ion-button color="success">
+      <ion-icon slot="start" name="star-outline"></ion-icon>
+      Avaliar
+    </ion-button>
+    <div class="rating">
+      <ion-icon color="warning" name="star"></ion-icon>
+      <span>4.5</span>
+      <p> 2056 avaliações </p>
+    </div>
+  </div>
+
+  <ion-list>
+    <ion-item>
+      <ion-avatar slot="start">
+        <img src="https://picsum.photos/400/600">
+      </ion-avatar>
+      <ion-label>
+        <h3>José</h3>
+        <p>Muito bom, adorei!</p>
+      </ion-label>
+      <ion-badge slot="end" color="warning">5</ion-badge>
+    </ion-item>
+
+    <ion-item>
+      <ion-avatar slot="start">
+        <img src="https://picsum.photos/400/600">
+      </ion-avatar>
+      <ion-label>
+        <h3>Alberto</h3>
+        <p>Bom atendimento</p>
+      </ion-label>
+      <ion-badge slot="end" color="warning">4</ion-badge>
+    </ion-item>
+
+    <ion-item>
+      <ion-avatar slot="start">
+        <img src="https://picsum.photos/400/600">
+      </ion-avatar>
+      <ion-label>
+        <h3>Carolina</h3>
+        <p>Bom café</p>
+      </ion-label>
+      <ion-badge class="flex items-center justify-center gap-1 px-2" slot="end">
+        <div class="text-lg">5</div>
+        <span class="material-icons">star</span>
+      </ion-badge>
+    </ion-item>
+  </ion-list>
+</ion-content>
