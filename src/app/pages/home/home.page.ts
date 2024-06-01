@@ -38,5 +38,8 @@ export class HomePage implements OnInit {
     const restaurants = await this.data.getRestaurants()
 
     this.restaurants = restaurants.sort(() => 0.5 - Math.random()).slice(0, 4)
+
+    const reviews = await this.data.getReviews()
+    console.log(reviews)
   }
 }
