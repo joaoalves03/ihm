@@ -53,7 +53,15 @@ const routes: Routes = [
   {
     path: 'navbar',
     loadChildren: () => import('./pages/navbar/navbar.module').then( m => m.NavbarPageModule)
+  },  {
+    path: 'reviews',
+    loadChildren: () => import('./pages/reviews/reviews.module').then( m => m.ReviewsPageModule)
   },
+  {
+    path: 'userreview',
+    loadChildren: () => import('./pages/userreview/userreview.module').then( m => m.UserreviewPageModule)
+  },
+
 ];
 
 @NgModule({

@@ -1,0 +1,35 @@
+.review-header {
+  text-align: center;
+  margin: 16px;
+}
+
+.review-header h2 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.review-header ion-button {
+  margin: 8px 0;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.rating ion-icon {
+  margin-right: 4px;
+}
+
+ion-item {
+  --border-radius: 12px;
+  --background: #f9f9f9;
+  margin: 8px 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+ion-avatar img {
+  border-radius: 50%;
+}
