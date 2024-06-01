@@ -43,6 +43,10 @@ const routes: Routes = [
         loadChildren: () => import('./pages/profile/profile.module').then( m => m.ProfilePageModule),
         canActivate: [AuthGuard],
       },
+      {
+        path: 'favorites',
+        loadChildren: () => import('./pages/favorites/favorites.module').then( m => m.FavoritesPageModule)
+      },
     ]
   },
   {
@@ -53,10 +57,8 @@ const routes: Routes = [
   {
     path: 'navbar',
     loadChildren: () => import('./pages/navbar/navbar.module').then( m => m.NavbarPageModule)
-  },  {
-    path: 'favorites',
-    loadChildren: () => import('./pages/favorites/favorites.module').then( m => m.FavoritesPageModule)
   },
+
 
 ];
 
