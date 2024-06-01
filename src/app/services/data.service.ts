@@ -49,4 +49,15 @@ export class DataService {
     return data as Review
   }
 
+  async addReview(restaurant: number, user: number, rating: number, text: string){
+
+    const { data, error } = await this.supabase
+      .from('reviews')
+      .insert([
+        { user: user, restaurant: restaurant, rating: rating, text: text},
+      ])
+      .select()
+
+  }
+
 }
