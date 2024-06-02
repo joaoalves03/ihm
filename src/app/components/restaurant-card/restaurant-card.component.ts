@@ -13,4 +13,5 @@ export class RestaurantCardComponent  implements OnInit {
 
   ngOnInit() {}
 
+    protected readonly Math = Math
 }
