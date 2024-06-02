@@ -23,10 +23,16 @@
   </div>
 
   <ion-list>
-    <div *ngIf="reviews === undefined || reviews.length === 0, else reviewList" class="flex flex-col items-center justify-center">
-      <div>Não existem avaliações</div>
-      <div>Porque não adicionar uma?</div>
+    <div *ngIf="reviews === undefined, else noReviews" class="flex justify-center">
+      <ion-spinner></ion-spinner>
     </div>
+
+    <ng-template #noReviews>
+      <div *ngIf="reviews?.length === 0, else reviewList" class="flex flex-col items-center justify-center">
+        <div>Não existem avaliações</div>
+        <div>Porque não adicionar uma?</div>
+      </div>
+    </ng-template>
 
     <ng-template #reviewList>
       <div class="text-gray-400 font-medium flex justify-center">
