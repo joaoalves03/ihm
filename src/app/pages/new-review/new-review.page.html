@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nova avaliação</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="flex justify-center text-3xl py-4">Avaliar "{{restaurant?.name}}"</div>
+
+  <div class="flex justify-center">
+    <span class="material-icons text-yellow-500">star</span>
+    <span class="material-icons text-yellow-500">star</span>
+    <span class="material-icons text-yellow-500">star</span>
+    <span class="material-icons text-yellow-500">star</span>
+    <span class="material-icons text-gray-300">star</span>
+  </div>
+
+  <div class="m-4">
+    <ion-textarea class="bg-gray-300 h-64 rounded-2xl px-4" placeholder="Escreva o que achou sobre este restaurante"></ion-textarea>
+  </div>
+
+  <div class="flex flex-col mx-16 gap-1">
+    <ion-button>Adicionar imagem</ion-button>
+    <ion-button>Submeter</ion-button>
+  </div>
+</ion-content>

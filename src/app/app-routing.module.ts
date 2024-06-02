@@ -70,6 +70,10 @@ const routes: Routes = [
     path: 'restaurant-location',
     loadChildren: () => import('./pages/restaurant-location/restaurant-location.module').then( m => m.RestaurantLocationPageModule)
   },
+  {
+    path: 'new-review',
+    loadChildren: () => import('./pages/new-review/new-review.module').then( m => m.NewReviewPageModule)
+  },
 
 ];
 
