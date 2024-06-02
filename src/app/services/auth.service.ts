@@ -11,16 +11,16 @@ import {Router} from "@angular/router"
   providedIn: 'root'
 })
 export class AuthService {
-  private supabase: SupabaseClient
+  private static supabase: SupabaseClient
   private currentUser: BehaviorSubject<boolean | User | any> = new BehaviorSubject(null)
 
   constructor(private router: Router) {
-    this.supabase = createClient(
+    AuthService.supabase = createClient(
       environment.supabaseUrl,
       environment.supabaseKey,
     )
 
-    this.supabase.auth.onAuthStateChange((event, session) => {
+    AuthService.supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
         this.currentUser.next(session?.user)
       } else {
@@ -36,7 +36,7 @@ export class AuthService {
       return
     }
 
-    const user = await this.supabase.auth.getUser()
+    const user = await AuthService.supabase.auth.getUser()
 
     if (user.data.user) {
       this.currentUser.next(user.data.user)
@@ -58,7 +58,7 @@ export class AuthService {
   }
 
   signUp(credentials: {name: string, email: string; password: string}) {
-    return this.supabase.auth.signUp({
+    return AuthService.supabase.auth.signUp({
       email: credentials.email,
       password: credentials.password,
       options: {
@@ -70,11 +70,15 @@ export class AuthService {
   }
 
   signIn(credentials: {email: string; password: string}) {
-    return this.supabase.auth.signInWithPassword(credentials)
+    return AuthService.supabase.auth.signInWithPassword(credentials)
   }
 
   async signOut() {
-    await this.supabase.auth.signOut()
+    await AuthService.supabase.auth.signOut()
     await this.router.navigateByUrl("/welcome", {replaceUrl: true})
+  }
+
+  static getSupabaseClient() {
+    return AuthService.supabase
   }
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Restaurant} from "../../objects/restaurant"
 import {ActivatedRoute} from "@angular/router"
 import {DataService} from "../../services/data.service"
@@ -8,7 +8,7 @@ import {DataService} from "../../services/data.service"
   templateUrl: './restaurant-details.page.html',
   styleUrls: ['./restaurant-details.page.scss'],
 })
-export class RestaurantDetailsPage implements OnInit {
+export class RestaurantDetailsPage implements AfterViewInit {
   restaurant?: Restaurant;
 
   constructor(
@@ -16,7 +16,7 @@ export class RestaurantDetailsPage implements OnInit {
     private data: DataService
   ) {}
 
-  async ngOnInit() {
+  async ngAfterViewInit() {
     this.route.paramMap.subscribe(async params => {
       const restaurantId = params.get('id')
 

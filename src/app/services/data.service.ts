@@ -4,6 +4,7 @@ import {environment} from "../../environments/environment"
 import {Restaurant} from "../objects/restaurant"
 import {Review} from "../objects/review"
 import {DetailedReview} from "../objects/detailed_review"
+import {AuthService} from "./auth.service"
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class DataService {
   public selectedRestaurant?: Restaurant
 
   constructor() {
-    this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey)
+    this.supabase = AuthService.getSupabaseClient()
   }
 
   async getRestaurants(): Promise<Restaurant[]> {

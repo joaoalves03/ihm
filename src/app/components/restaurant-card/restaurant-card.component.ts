@@ -9,9 +9,9 @@ import {Restaurant} from "../../objects/restaurant"
 export class RestaurantCardComponent  implements OnInit {
   @Input() restaurant?: Restaurant
 
+  distance = Math.floor(Math.random() * 10) + 1
+
   constructor() { }
 
   ngOnInit() {}
-
-    protected readonly Math = Math
 }
