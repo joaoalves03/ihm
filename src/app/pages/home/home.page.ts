@@ -3,6 +3,7 @@ import {NavController} from "@ionic/angular"
 import {AuthService} from "../../services/auth.service"
 import {DataService} from "../../services/data.service"
 import {Restaurant} from "../../objects/restaurant"
+import {search} from "ionicons/icons";
 
 @Component({
   selector: 'app-home',
@@ -39,4 +40,7 @@ export class HomePage implements OnInit {
 
     this.restaurants = restaurants.sort(() => 0.5 - Math.random()).slice(0, 4)
   }
+
+  protected readonly search = search;
+
 }

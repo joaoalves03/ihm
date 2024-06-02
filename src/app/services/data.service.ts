@@ -65,4 +65,17 @@ export class DataService {
 
   }
 
+  async searchRestaurants(name: string) {
+    const { data, error } = await this.supabase
+      .from('restaurants')
+      .select('*')
+      .ilike('name', name);
+
+    if (error) {
+      console.error('Erro ao buscar restaurantes:', error);
+      return [];
+    }
+    return data;
+  }
+
 }
