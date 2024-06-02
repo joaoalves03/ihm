@@ -43,7 +43,6 @@ export class RegisterPage {
 
     this.auth.signUp(this.credentials.getRawValue()).then(async (data) => {
       await loading.dismiss()
-      console.log('data: ', data)
 
       if (data.error) {
         await this.showAlert('Erro a registar', data.error.message)

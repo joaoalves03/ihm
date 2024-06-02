@@ -24,7 +24,6 @@ export class LoginPage {
   ) {
     this.auth.getCurrentUser().subscribe((user) => {
       if (user) {
-        console.log("USER ON LOGIN PAGE: ", user)
         this.router.navigateByUrl("/home", {replaceUrl: true})
       }
     })
