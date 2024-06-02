@@ -8,7 +8,9 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div *ngIf="restaurant === undefined, else content">A carregar...</div>
+  <div class="flex justify-center items-center h-full" *ngIf="restaurant === undefined, else content">
+    <ion-spinner></ion-spinner>
+  </div>
 
   <ng-template #content>
     <div>
@@ -54,17 +56,16 @@
       <div class="space-y-4">
         <ion-item>
           <ion-thumbnail slot="start">
-            <img src="https://picsum.photos/300/500" />
+            <img src="https://picsum.photos/300/500" alt=""/>
           </ion-thumbnail>
           <ion-label>
             <h3>Braseiro das Mimosas</h3>
             <p>Abelheira, Viana do Castelo</p>
           </ion-label>
           <ion-button fill="outline" slot="end">Ver</ion-button>
-        </ion-item>
-        <ion-item>
+
           <ion-thumbnail slot="start">
-            <img src="https://picsum.photos/300/500" />
+            <img src="https://picsum.photos/300/500" alt=""/>
           </ion-thumbnail>
           <ion-label>
             <h3>McDonald's</h3>
