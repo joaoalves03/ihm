@@ -42,7 +42,7 @@
         </div>
       </div>
       <div class="px-4">
-        [[ICONS]]
+        <app-restaurant-icons [restaurantAccessibility]="restaurant?.accessibility ?? []"></app-restaurant-icons>
       </div>
       <div class="flex justify-center items-center">
         <ion-button [routerLink]="'/reviews/' + restaurant?.id">Avaliações</ion-button>

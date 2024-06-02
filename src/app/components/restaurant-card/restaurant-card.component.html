@@ -8,8 +8,7 @@
         <span class="material-icons text-yellow-400">star</span>
       </div>
       <div>
-        <span class="material-icons">local_parking</span>
-        <span class="material-icons">accessible</span>
+        <app-restaurant-icons [restaurantAccessibility]="restaurant?.accessibility ?? []"></app-restaurant-icons>
       </div>
     </div>
     <div class="flex w-full justify-end">

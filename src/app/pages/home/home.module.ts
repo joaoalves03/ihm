@@ -7,6 +7,7 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import {RestaurantCardComponent} from "../../components/restaurant-card/restaurant-card.component"
 import {RestaurantCardSimpleComponent} from "../../components/restaurant-card-simple/restaurant-card-simple.component"
+import {RestaurantIconsComponent} from "../../components/restaurant-icons/restaurant-icons.component"
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import {RestaurantCardSimpleComponent} from "../../components/restaurant-card-si
         CommonModule,
         FormsModule,
         IonicModule,
-        HomePageRoutingModule
+        HomePageRoutingModule,
+        RestaurantIconsComponent
     ],
     exports: [
         RestaurantCardSimpleComponent
