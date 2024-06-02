@@ -3,6 +3,7 @@ import {createClient, SupabaseClient} from "@supabase/supabase-js"
 import {environment} from "../../environments/environment"
 import {Restaurant} from "../objects/restaurant"
 import {Review} from "../objects/review"
+import {DetailedReview} from "../objects/detailed_review"
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,6 @@ export class DataService {
   private supabase: SupabaseClient
 
   public selectedRestaurant?: Restaurant
-  public selectedReview?: Review
 
   constructor() {
     this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey)
@@ -43,14 +43,14 @@ export class DataService {
 
     return data as Review[]
   }
-  async getReview(id: number): Promise<Review> {
+  async getReview(id: number): Promise<DetailedReview> {
     let{data, error } = await this.supabase
-      .from('reviews')
+      .from('detailedreviews')
       .select('*')
       .eq('id', id)
       .single()
 
-    return data as Review
+    return data as DetailedReview
   }
 
   async addReview(restaurant: number, user: number, rating: number, text: string){

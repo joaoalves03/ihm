@@ -9,13 +9,12 @@
 
 <ion-content [fullscreen]="true">
   <div class="review-header">
-    <div class="font-semibold text-3xl">Coral</div>
+    <div class="font-semibold text-3xl">{{ restaurant?.name }}</div>
     <div class="rating">
       <div class="flex gap-1 items-center justify-center">
         <div class="text-2xl font-medium">4.5</div>
         <ion-icon color="warning" name="star"></ion-icon>
       </div>
-      <p class="text-gray-400 font-medium">2056 avaliações </p>
     </div>
     <ion-button color="success">
       <ion-icon slot="start" name="star-outline"></ion-icon>
@@ -30,7 +29,10 @@
     </div>
 
     <ng-template #reviewList>
-      <ion-item *ngFor="let review of reviews">
+      <div class="text-gray-400 font-medium flex justify-center">
+        {{ reviews?.length }} {{reviews?.length === 1 ? 'avaliação' : 'avaliações'}}
+      </div>
+      <ion-item *ngFor="let review of reviews" [routerLink]="'/userreview/' + review.id">
         <ion-avatar slot="start">
           <img src="https://picsum.photos/400/600" alt="">
         </ion-avatar>
