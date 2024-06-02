@@ -11,6 +11,7 @@ export class DataService {
   private supabase: SupabaseClient
 
   public selectedRestaurant?: Restaurant
+  public selectedReview?: Review
 
   constructor() {
     this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey)
@@ -34,10 +35,11 @@ export class DataService {
     return data as Restaurant
   }
 
-  async getReviews(): Promise<Review[]> {
+  async getReviews(restaurant_id: number): Promise<Review[]> {
     let { data, error } = await this.supabase
       .from('reviews')
       .select('*')
+      .eq('restaurant', restaurant_id)
 
     return data as Review[]
   }

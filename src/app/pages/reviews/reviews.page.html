@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button default-href="#"></ion-back-button>
     </ion-buttons>
     <ion-title>Avaliações</ion-title>
   </ion-toolbar>
@@ -9,59 +9,40 @@
 
 <ion-content [fullscreen]="true">
   <div class="review-header">
-    <h2>Coral</h2>
+    <div class="font-semibold text-3xl">Coral</div>
+    <div class="rating">
+      <div class="flex gap-1 items-center justify-center">
+        <div class="text-2xl font-medium">4.5</div>
+        <ion-icon color="warning" name="star"></ion-icon>
+      </div>
+      <p class="text-gray-400 font-medium">2056 avaliações </p>
+    </div>
     <ion-button color="success">
       <ion-icon slot="start" name="star-outline"></ion-icon>
       Avaliar
     </ion-button>
-    <div class="rating">
-      <ion-icon color="warning" name="star"></ion-icon>
-      <span>4.5</span>
-      <p> 2056 avaliações </p>
-    </div>
   </div>
 
   <ion-list>
-    <ion-item>
-      <ion-avatar slot="start">
-        <img src="https://picsum.photos/400/600">
-      </ion-avatar>
-      <ion-label>
-        <h3>José</h3>
-        <p>Muito bom, adorei!</p>
-      </ion-label>
-      <ion-badge class="flex items-center justify-center gap-1 px-2" slot="end">
-        <div class="text-lg">5</div>
-        <span class="material-icons">star</span>
-      </ion-badge>
-    </ion-item>
+    <div *ngIf="reviews === undefined || reviews.length === 0, else reviewList" class="flex flex-col items-center justify-center">
+      <div>Não existem avaliações</div>
+      <div>Porque não adicionar uma?</div>
+    </div>
 
-    <ion-item>
-      <ion-avatar slot="start">
-        <img src="https://picsum.photos/400/600">
-      </ion-avatar>
-      <ion-label>
-        <h3>Alberto</h3>
-        <p>Bom atendimento</p>
-      </ion-label>
-      <ion-badge class="flex items-center justify-center gap-1 px-2" slot="end">
-        <div class="text-lg">5</div>
-        <span class="material-icons">star</span>
-      </ion-badge>
-    </ion-item>
-
-    <ion-item>
-      <ion-avatar slot="start">
-        <img src="https://picsum.photos/400/600">
-      </ion-avatar>
-      <ion-label>
-        <h3>Carolina</h3>
-        <p>Bom café</p>
-      </ion-label>
-      <ion-badge class="flex items-center justify-center gap-1 px-2" slot="end">
-        <div class="text-lg">5</div>
-        <span class="material-icons">star</span>
-      </ion-badge>
-    </ion-item>
+    <ng-template #reviewList>
+      <ion-item *ngFor="let review of reviews">
+        <ion-avatar slot="start">
+          <img src="https://picsum.photos/400/600" alt="">
+        </ion-avatar>
+        <ion-label>
+          <h3>{{ review.user }}</h3>
+          <p class="line-clamp-1">{{ review.text }}</p>
+        </ion-label>
+        <ion-badge class="flex items-center justify-center gap-1 px-2" slot="end">
+          <div class="text-lg">{{ review.rating }}</div>
+          <span class="material-icons">star</span>
+        </ion-badge>
+      </ion-item>
+    </ng-template>
   </ion-list>
 </ion-content>
