@@ -21,6 +21,7 @@ export class RestaurantDetailsPage implements OnInit {
       const restaurantId = params.get('id')
 
       this.restaurant = await this.data.getRestaurant(Number(restaurantId))
+      this.data.selectedRestaurant = this.restaurant
     })
   }
 

@@ -9,6 +9,8 @@ import {Restaurant} from "../objects/restaurant"
 export class DataService {
   private supabase: SupabaseClient
 
+  public selectedRestaurant?: Restaurant
+
   constructor() {
     this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey)
   }
@@ -30,6 +32,4 @@ export class DataService {
 
     return data as Restaurant
   }
-
-
 }
