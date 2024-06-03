@@ -92,4 +92,27 @@ export class DataService {
         .eq('user_id', user_id)
         .eq('restaurant_id', restaurant_id);
   }
+
+  async getFavoriteRestaurants(user_id: string | null) {
+    let favoriteRestaurantIds: number[] = [];
+    let favoriteRestaurants: Restaurant[] = [];
+
+    // Fetch the favorite restaurant IDs for the given user
+    const { data } = await this.supabase
+        .from('favorites')
+        .select('restaurant_id')
+        .eq('user_id', user_id);
+
+    if (data) {
+      favoriteRestaurantIds = data.map((favorite: any) => favorite.restaurant_id);
+    }
+
+    for (const restaurantId of favoriteRestaurantIds) {
+      const restaurant = await this.getRestaurant(restaurantId);
+      if (restaurant) {
+        favoriteRestaurants.push(restaurant);
+      }
+    }
+    return favoriteRestaurants;
+  }
 }

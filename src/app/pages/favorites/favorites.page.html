@@ -20,11 +20,10 @@
   <!--restaurantes favoritos -->
   <div class="text-2xl font-semibold px-6 pt-8 pb-4">Restaurantes favoritos</div>
   <div class="flex gap-4 overflow-x-auto py-8">
-    <app-restaurant-card-simple></app-restaurant-card-simple>
-    <app-restaurant-card-simple></app-restaurant-card-simple>
-    <app-restaurant-card-simple></app-restaurant-card-simple>
+    <ng-container *ngFor="let restaurant of favoriteRestaurants">
+      <app-restaurant-card-simple [restaurant]="restaurant"></app-restaurant-card-simple>
+    </ng-container>
   </div>
-
   <!--Avaliações secção-->
   <div class="text-xl font-semibold p-4">As tuas Avaliações</div>
 
