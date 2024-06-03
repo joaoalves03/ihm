@@ -1,3 +1,17 @@
+.profile-picture-wrapper {
+  @apply absolute left-1/2 top-1/2 -translate-x-1/2;
+
+  img {
+    @apply w-36 rounded-full;
+  }
+
+  span {
+    @apply absolute bottom-1 right-1 bg-gray-200 text-[--ion-color-primary] p-2 rounded-full border-2 border-white;
+  }
+}
+
+
+
 .input {
   @apply flex flex-col gap-1;
 

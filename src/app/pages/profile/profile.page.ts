@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {AuthService} from "../../services/auth.service"
-import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-profile',
@@ -8,19 +7,15 @@ import {Router} from "@angular/router"
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage {
-  user = this.auth.getCurrentUser()
-  name = 'Utilizador'
+  name = ''
+  email = ''
 
   constructor(
-    private auth: AuthService,
-    private router: Router
+    private auth: AuthService
   ) {
-    this.user.subscribe((user) => {
-      if(user) {
-        this.name = user.user_metadata['name'] !== undefined
-          ? user.user_metadata['name']
-          : 'Utilizador'
-      }
+    this.auth.getCurrentUser().subscribe((user) => {
+      this.name = user.user_metadata['name']
+      this.email = user.email ?? ''
     })
   }
 
