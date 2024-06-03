@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router"
 import {DataService} from "../../services/data.service"
 import {Review} from "../../objects/review"
+import {User} from "../../objects/user"
 
 @Component({
   selector: 'app-userreview',
@@ -10,6 +11,7 @@ import {Review} from "../../objects/review"
 })
 export class UserreviewPage implements OnInit {
   review?: Review
+  user?: User
 
   constructor(
     private route: ActivatedRoute,
@@ -21,6 +23,8 @@ export class UserreviewPage implements OnInit {
       const reviewId = params.get('id')
 
       this.review = await this.data.getReview(Number(reviewId))
+
+      this.user = await this.data.getUserInfo(this.review.user)
     })
   }
 

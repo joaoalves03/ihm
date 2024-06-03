@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router"
-import {Review} from "../../objects/review"
 import {DataService} from "../../services/data.service"
 import {Restaurant} from "../../objects/restaurant"
+import {DetailedReview} from "../../objects/detailed_review"
 
 @Component({
   selector: 'app-reviews',
@@ -11,7 +11,7 @@ import {Restaurant} from "../../objects/restaurant"
 })
 export class ReviewsPage implements OnInit {
   restaurant?: Restaurant
-  reviews?: Review[]
+  reviews?: DetailedReview[]
 
   constructor(
     private route: ActivatedRoute,
@@ -24,7 +24,7 @@ export class ReviewsPage implements OnInit {
     this.route.paramMap.subscribe(async params => {
       const restaurantId = params.get('id')
 
-      this.reviews = await this.data.getReviews(Number(restaurantId))
+      this.reviews = await this.data.getDetailedReviews(Number(restaurantId))
     })
   }
 }

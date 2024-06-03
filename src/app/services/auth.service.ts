@@ -57,8 +57,8 @@ export class AuthService {
     }
   }
 
-  signUp(credentials: {name: string, email: string; password: string}) {
-    return AuthService.supabase.auth.signUp({
+  async signUp(credentials: {name: string, email: string; password: string}) {
+    const data = AuthService.supabase.auth.signUp({
       email: credentials.email,
       password: credentials.password,
       options: {
@@ -67,6 +67,17 @@ export class AuthService {
         }
       }
     })
+
+    // @ts-ignore
+    const userId: string = data['id']
+
+    AuthService.supabase
+      .from('users')
+      .update({name: credentials.name})
+      .eq('id', userId)
+      .select()
+
+    return data
   }
 
   signIn(credentials: {email: string; password: string}) {
