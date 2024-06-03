@@ -19,4 +19,6 @@ import {RestaurantIconsComponent} from "../../components/restaurant-icons/restau
     ],
   declarations: [RestaurantDetailsPage]
 })
-export class RestaurantDetailsPageModule {}
+export class RestaurantDetailsPageModule {
+
+}

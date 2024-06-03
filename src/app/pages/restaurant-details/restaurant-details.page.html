@@ -4,11 +4,18 @@
       <ion-back-button default-href="#"></ion-back-button>
     </ion-buttons>
     <ion-title>Restaurante</ion-title>
+    <!-- Container for the heart icon -->
+    <div class="absolute top-0 right-0 p-1 z-10">
+      <ion-button fill="clear" (click)="toggleFavorite()">
+        <span class="material-icons text-[--ion-color-primary]" *ngIf="isFavorite">favorite</span>
+        <span class="material-icons text-[--ion-color-primary]" *ngIf="!isFavorite">favorite_border</span>
+      </ion-button>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="flex justify-center items-center h-full" *ngIf="restaurant === undefined, else content">
+  <div class="flex justify-center items-center h-full" *ngIf="restaurant === undefined; else content">
     <ion-spinner></ion-spinner>
   </div>
 
@@ -44,6 +51,7 @@
       <div class="px-4">
         <app-restaurant-icons [restaurantAccessibility]="restaurant?.accessibility ?? []"></app-restaurant-icons>
       </div>
+
       <div class="flex justify-center items-center">
         <ion-button [routerLink]="'/reviews/' + restaurant?.id">Avaliações</ion-button>
       </div>
