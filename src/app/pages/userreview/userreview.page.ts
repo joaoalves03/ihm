@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router"
 import {DataService} from "../../services/data.service"
-import {DetailedReview} from "../../objects/detailed_review"
+import {Review} from "../../objects/review"
 
 @Component({
   selector: 'app-userreview',
@@ -9,7 +9,7 @@ import {DetailedReview} from "../../objects/detailed_review"
   styleUrls: ['./userreview.page.scss'],
 })
 export class UserreviewPage implements OnInit {
-  review?: DetailedReview
+  review?: Review
 
   constructor(
     private route: ActivatedRoute,

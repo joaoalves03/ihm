@@ -2,7 +2,6 @@ import {Injectable} from "@angular/core"
 import {SupabaseClient} from "@supabase/supabase-js"
 import {Restaurant} from "../objects/restaurant"
 import {Review} from "../objects/review"
-import {DetailedReview} from "../objects/detailed_review"
 import {AuthService} from "./auth.service"
 
 @Injectable({
@@ -53,14 +52,14 @@ export class DataService {
     return data as Review[]
   }
 
-  async getReview(id: number): Promise<DetailedReview> {
+  async getReview(id: number): Promise<Review> {
     let{ data } = await this.supabase
-      .from('detailedreviews')
+      .from('reviews')
       .select('*')
       .eq('id', id)
       .single()
 
-    return data as DetailedReview
+    return data as Review
   }
 
   async addReview(restaurant: number, user: string, rating: number, text: string){
