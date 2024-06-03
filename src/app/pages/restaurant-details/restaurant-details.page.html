@@ -30,15 +30,15 @@
           </div>
         </div>
         <div class="flex items-center gap-1">
-          <div class="text-2xl font-bold">{{ restaurant?.avg === null ? '?' : restaurant?.avg!.toFixed(2)}}</div>
+          <div class="text-2xl font-bold">{{ restaurant?.avg === null ? '?' : restaurant?.avg!.toFixed(2) }}</div>
           <span class="material-icons-sharp text-yellow-400">star</span>
         </div>
       </div>
       <div class="flex w-full justify-center">Não existem imagens disponíveis</div>
       <div class="flex items-center justify-between p-4">
         <div class="flex items-center gap-2" (click)="isModalOpen = true">
-          <div class="flex flex-col">
-            <div class="flex justify-center items-center gap-1">
+          <div class="flex flex-col justify-center items-center">
+            <div class="flex justify-center items-center gap-2">
               <span class="material-icons text-[--ion-color-primary]">schedule</span>
               <div>{{ getTodaySchedule() == null ? 'Fechado' : 'Aberto hoje' }}</div>
             </div>
@@ -71,13 +71,29 @@
           <ion-title>Horário</ion-title>
         </ion-toolbar>
       </ion-header>
-      <ion-content class="ion-padding">
-        <div class="grid grid-cols-2 gap-4 text-center">
-          <div class="flex flex-col gap-2">
-            <div *ngFor="let schedule of restaurant?.schedule; index as i"> {{ diasDaSemana[i] }} </div>
-          </div>
-          <div class="flex flex-col gap-2">
-            <div *ngFor="let schedule of restaurant?.schedule; index as i">{{ schedule === null ? 'Fechado' : schedule }}</div>
+<!--      <ion-content class="ion-padding">-->
+<!--        <div class="grid grid-cols-2 gap-4 text-center">-->
+<!--          <div class="flex flex-col gap-2">-->
+<!--            <div *ngFor="let _ of restaurant?.schedule; index as i"> {{ diasDaSemana[i] }}</div>-->
+<!--          </div>-->
+<!--          <div class="flex flex-col gap-2">-->
+<!--            <div-->
+<!--              class="whitespace-pre"-->
+<!--              *ngFor="let schedule of restaurant?.schedule; index as i">{{-->
+<!--                schedule === null-->
+<!--                  ? 'Fechado'-->
+<!--                  : schedule-->
+<!--              }}-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </ion-content>-->
+
+      <ion-content>
+        <div class="flex flex-col gap-4 p-4">
+          <div class="grid grid-cols-2 text-center items-center" *ngFor="let schedule of restaurant?.schedule; index as i">
+            <div> {{ diasDaSemana[i] }}</div>
+            <div class="whitespace-pre">{{schedule === null ? 'Fechado' : schedule }}</div>
           </div>
         </div>
       </ion-content>
