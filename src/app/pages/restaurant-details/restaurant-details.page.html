@@ -71,24 +71,6 @@
           <ion-title>Horário</ion-title>
         </ion-toolbar>
       </ion-header>
-<!--      <ion-content class="ion-padding">-->
-<!--        <div class="grid grid-cols-2 gap-4 text-center">-->
-<!--          <div class="flex flex-col gap-2">-->
-<!--            <div *ngFor="let _ of restaurant?.schedule; index as i"> {{ diasDaSemana[i] }}</div>-->
-<!--          </div>-->
-<!--          <div class="flex flex-col gap-2">-->
-<!--            <div-->
-<!--              class="whitespace-pre"-->
-<!--              *ngFor="let schedule of restaurant?.schedule; index as i">{{-->
-<!--                schedule === null-->
-<!--                  ? 'Fechado'-->
-<!--                  : schedule-->
-<!--              }}-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </ion-content>-->
-
       <ion-content>
         <div class="flex flex-col gap-4 p-4">
           <div class="grid grid-cols-2 text-center items-center" *ngFor="let schedule of restaurant?.schedule; index as i">
