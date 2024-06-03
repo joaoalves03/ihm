@@ -4,6 +4,6 @@ export interface Restaurant {
   street: string
   location: string
   accessibility: string[]
-  schedule: string|null[],
+  schedule: (string|null)[],
   avg: number|null
 }

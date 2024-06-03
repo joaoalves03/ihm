@@ -1,8 +1,8 @@
-import { AfterViewInit, Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Restaurant } from '../../objects/restaurant';
-import { DataService } from '../../services/data.service';
-import { AuthService } from '../../services/auth.service';
+import {AfterViewInit, Component} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {Restaurant} from '../../objects/restaurant';
+import {DataService} from '../../services/data.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-restaurant-details',
@@ -10,14 +10,19 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./restaurant-details.page.scss'],
 })
 export class RestaurantDetailsPage implements AfterViewInit {
+  diasDaSemana = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"]
+
   restaurant?: Restaurant;
   isFavorite: boolean = false;
 
+  isModalOpen = false
+
   constructor(
-      private route: ActivatedRoute,
-      private data: DataService,
-      private authService: AuthService
-  ) {}
+    private route: ActivatedRoute,
+    private data: DataService,
+    private authService: AuthService
+  ) {
+  }
 
   async ngAfterViewInit() {
     this.route.paramMap.subscribe(async params => {
@@ -36,8 +41,7 @@ export class RestaurantDetailsPage implements AfterViewInit {
 
   getTodaySchedule() {
     const today = new Date().getDay() - 1;
-    const str = this.restaurant?.schedule[today];
-    return str === null ? 'Fechado' : str;
+    return this.restaurant?.schedule[today];
   }
 
   async toggleFavorite() {
