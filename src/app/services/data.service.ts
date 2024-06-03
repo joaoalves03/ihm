@@ -94,7 +94,7 @@ export class DataService {
   }
 
   async getUserInfo(userId: string): Promise<User> {
-    const { data } = await this.supabase
+    const {data} = await this.supabase
       .from('users')
       .select('*')
       .eq('id', userId)
