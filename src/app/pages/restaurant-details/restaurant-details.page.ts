@@ -1,7 +1,8 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {Restaurant} from "../../objects/restaurant"
-import {ActivatedRoute} from "@angular/router"
-import {DataService} from "../../services/data.service"
+import { AfterViewInit, Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Restaurant } from '../../objects/restaurant';
+import { DataService } from '../../services/data.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-restaurant-details',
@@ -10,28 +11,52 @@ import {DataService} from "../../services/data.service"
 })
 export class RestaurantDetailsPage implements AfterViewInit {
   restaurant?: Restaurant;
+  isFavorite: boolean = false;
 
   constructor(
-    private route: ActivatedRoute,
-    private data: DataService
+      private route: ActivatedRoute,
+      private data: DataService,
+      private authService: AuthService
   ) {}
 
   async ngAfterViewInit() {
     this.route.paramMap.subscribe(async params => {
-      const restaurantId = params.get('id')
+      const restaurantId = params.get('id');
+      this.restaurant = await this.data.getRestaurant(Number(restaurantId));
+      this.data.selectedRestaurant = this.restaurant;
 
-      this.restaurant = await this.data.getRestaurant(Number(restaurantId))
-      this.data.selectedRestaurant = this.restaurant
-    })
+      const user = this.authService.getCurrentUser();
+      if (user && this.restaurant) {
+        const userId = this.authService.getCurrentUserId();
+        const restaurantId = this.restaurant.id;
+        this.isFavorite = await this.data.isFavorite(userId, restaurantId);
+      }
+    });
   }
 
   getTodaySchedule() {
     const today = new Date().getDay() - 1;
-
-    const str = this.restaurant?.schedule[today]
-
-    return str === null
-      ? "Fechado"
-      : str
+    const str = this.restaurant?.schedule[today];
+    return str === null ? 'Fechado' : str;
   }
+
+  async toggleFavorite() {
+    const user = this.authService.getCurrentUser();
+    if (user && this.restaurant) {
+      const user_id = this.authService.getCurrentUserId();
+      const restaurantId = this.restaurant.id;
+      if (this.isFavorite) {
+        // Unfavorite the restaurant by deleting the favorite entry from the database
+        await this.data.deleteFavorite(user_id, restaurantId);
+        this.isFavorite = false;
+      } else {
+        // Favorite the restaurant by adding the favorite entry to the database
+        await this.data.toggleFavorite(user_id, restaurantId);
+        this.isFavorite = true;
+      }
+    } else {
+      console.log('User not authenticated or restaurant not loaded');
+    }
+  }
+
 }

@@ -2,9 +2,10 @@ import {Injectable} from "@angular/core"
 import {SupabaseClient} from "@supabase/supabase-js"
 import {Restaurant} from "../objects/restaurant"
 import {Review} from "../objects/review"
+import {DetailedReview} from "../objects/detailed_review"
 import {AuthService} from "./auth.service"
 import {User} from "../objects/user"
-import {DetailedReview} from "../objects/detailed_review"
+
 
 @Injectable({
   providedIn: 'root'
@@ -100,5 +101,71 @@ export class DataService {
       .single()
 
     return data as User
+  }
+
+  async toggleFavorite(user_id: string | null, restaurant_id: number) {
+    const {data: existingFavorite} = await this.supabase
+      .from('favorites')
+      .select('*')
+      .eq('user_id', user_id)
+      .eq('restaurant_id', restaurant_id)
+      .single();
+
+    if (existingFavorite) {
+      await this.supabase
+        .from('favorites')
+        .delete()
+        .eq('user_id', user_id)
+        .eq('restaurant_id', restaurant_id);
+    } else {
+      await this.supabase
+        .from('favorites')
+        .insert([{user_id: user_id, restaurant_id: restaurant_id}]);
+    }
+  }
+
+  async isFavorite(user_id: string | null, restaurant_id: number) {
+    if (user_id) {
+      const {data: existingFavorite} = await this.supabase
+        .from('favorites')
+        .select('*')
+        .eq('user_id', user_id)
+        .eq('restaurant_id', restaurant_id)
+        .single();
+      return !!existingFavorite;
+    } else {
+      return false;
+    }
+  }
+
+  async deleteFavorite(user_id: string | null, restaurant_id: number) {
+    const {data} = await this.supabase
+      .from('favorites')
+      .delete()
+      .eq('user_id', user_id)
+      .eq('restaurant_id', restaurant_id);
+  }
+
+  async getFavoriteRestaurants(user_id: string | null) {
+    let favoriteRestaurantIds: number[] = [];
+    let favoriteRestaurants: Restaurant[] = [];
+
+    // Fetch the favorite restaurant IDs for the given user
+    const { data } = await this.supabase
+      .from('favorites')
+      .select('restaurant_id')
+      .eq('user_id', user_id);
+
+    if (data) {
+      favoriteRestaurantIds = data.map((favorite: any) => favorite.restaurant_id);
+    }
+
+    for (const restaurantId of favoriteRestaurantIds) {
+      const restaurant = await this.getRestaurant(restaurantId);
+      if (restaurant) {
+        favoriteRestaurants.push(restaurant);
+      }
+    }
+    return favoriteRestaurants;
   }
 }
