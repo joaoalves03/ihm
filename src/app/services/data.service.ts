@@ -63,14 +63,12 @@ export class DataService {
     return data as DetailedReview
   }
 
-  async addReview(restaurant: number, user: number, rating: number, text: string){
-
-    const { data } = await this.supabase
+  async addReview(restaurant: number, user: string, rating: number, text: string){
+    await this.supabase
       .from('reviews')
       .insert([
         { user: user, restaurant: restaurant, rating: rating, text: text},
       ])
       .select()
-
   }
 }

@@ -1,0 +1,42 @@
+.content {
+  @apply flex justify-center w-full;
+}
+
+.rate {
+  @apply inline-block border-0;
+}
+
+.rate > input {
+  @apply hidden;
+}
+
+.rate > label {
+  @apply float-right;
+}
+
+.rate > label:before {
+  @apply inline-block text-[3rem] m-0 cursor-pointer;
+  padding: .82rem .55rem;
+  font-family: "Material Icons", serif;
+  content: "star";
+}
+
+.rate > label:last-child:before {
+  content: "grade";
+}
+
+.rate .half:before {
+  @apply absolute pr-0;
+  content: "star_half";
+}
+
+input:checked ~ label,
+label:hover, label:hover ~ label {
+  @apply text-yellow-500;
+}
+
+input:checked + label:hover, input:checked ~ label:hover,
+input:checked ~ label:hover ~ label,
+label:hover ~ input:checked ~ label {
+  @apply text-yellow-500;
+}
