@@ -20,7 +20,7 @@ export class DataService {
 
   async getRestaurants(): Promise<Restaurant[]> {
     let { data} = await this.supabase
-      .from('restaurants')
+      .from('restaurantswithrating')
       .select('*')
 
     return data as Restaurant[]
@@ -28,7 +28,7 @@ export class DataService {
 
   async getRestaurant(id: number): Promise<Restaurant> {
     let { data } = await this.supabase
-      .from('restaurants')
+      .from('restaurantswithrating')
       .select('*')
       .eq('id', id)
       .single()

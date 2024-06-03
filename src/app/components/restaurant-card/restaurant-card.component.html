@@ -4,7 +4,7 @@
     <div>
       <div class="font-bold line-clamp-2">{{ restaurant?.name }}</div>
       <div class="flex flex-row">
-        <div>5.0</div>
+        <div>{{ restaurant?.avg === null ? '?' : restaurant?.avg!.toFixed(2)}}</div>
         <span class="material-icons text-yellow-400">star</span>
       </div>
       <div>

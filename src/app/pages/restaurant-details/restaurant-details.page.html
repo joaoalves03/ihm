@@ -23,8 +23,8 @@
           </div>
         </div>
         <div class="flex items-center gap-1">
-          <div class="text-2xl font-bold">?</div>
-          <span class="material-icons-sharp text-gray-300">star</span>
+          <div class="text-2xl font-bold">{{ restaurant?.avg === null ? '?' : restaurant?.avg!.toFixed(2)}}</div>
+          <span class="material-icons-sharp text-yellow-400">star</span>
         </div>
       </div>
       <div class="flex w-full justify-center">Não existem imagens disponíveis</div>
