@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Restaurant} from "../../objects/restaurant"
+import {NavController} from "@ionic/angular"
 
 @Component({
   selector: 'app-restaurant-card-simple',
@@ -9,8 +10,13 @@ import {Restaurant} from "../../objects/restaurant"
 export class RestaurantCardSimpleComponent  implements OnInit {
   @Input() restaurant?: Restaurant
 
-  constructor() { }
+  constructor(
+    private navCtrl: NavController
+  ) { }
 
   ngOnInit() {}
 
+  openRestaurantDetails() {
+    this.navCtrl.navigateForward(`/restaurant-details/${this.restaurant?.id}`)
+  }
 }
