@@ -3,7 +3,6 @@ import {NavController} from "@ionic/angular"
 import {AuthService} from "../../services/auth.service"
 import {DataService} from "../../services/data.service"
 import {Restaurant} from "../../objects/restaurant"
-import {search} from "ionicons/icons";
 
 @Component({
   selector: 'app-home',
@@ -13,6 +12,7 @@ import {search} from "ionicons/icons";
 export class HomePage implements OnInit {
   user = this.auth.getCurrentUser()
   welcome_message = ''
+  search_text = ''
 
   restaurants: Restaurant[] = []
 
@@ -35,12 +35,21 @@ export class HomePage implements OnInit {
     this.navCtrl.navigateForward(`/restaurant-details/${id}`)
   }
 
+  handleInput(event: any) {
+    this.search_text = event.target.value
+  }
+
+  search() {
+    this.navCtrl.navigateForward(`/search`, {
+      queryParams: {
+        query: this.search_text
+      }
+    })
+  }
+
   async ngOnInit() {
     const restaurants = await this.data.getRestaurants()
 
     this.restaurants = restaurants.sort(() => 0.5 - Math.random()).slice(0, 4)
   }
-
-  protected readonly search = search;
-
 }

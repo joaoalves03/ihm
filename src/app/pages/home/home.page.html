@@ -5,22 +5,18 @@
 
   <ng-template #content>
     <div class="flex flex-col gap-2 p-4">
-      <ion-searchbar placeholder="Pesquisar"></ion-searchbar>
+      <ion-searchbar placeholder="Pesquisar" (keydown.enter)="search()" (ionInput)="handleInput($event)"></ion-searchbar>
       <div class="text-2xl font-semibold">{{
           welcome_message
         }}
       </div>
       <div class="text-xl">Perto de si</div>
-      <app-restaurant-card (click)="openRestaurantDetails(restaurants[0].id)"
-                           [restaurant]="restaurants[0]"></app-restaurant-card>
+      <app-restaurant-card [restaurant]="restaurants[0]"></app-restaurant-card>
       <div class="text-xl">Sugestões</div>
       <div class="flex gap-4 overflow-x-auto py-8">
-        <app-restaurant-card-simple (click)="openRestaurantDetails(restaurants[1].id)"
-                                    [restaurant]="restaurants[1]"></app-restaurant-card-simple>
-        <app-restaurant-card-simple (click)="openRestaurantDetails(restaurants[2].id)"
-                                    [restaurant]="restaurants[2]"></app-restaurant-card-simple>
-        <app-restaurant-card-simple (click)="openRestaurantDetails(restaurants[3].id)"
-                                    [restaurant]="restaurants[3]"></app-restaurant-card-simple>
+        <app-restaurant-card-simple [restaurant]="restaurants[1]"></app-restaurant-card-simple>
+        <app-restaurant-card-simple [restaurant]="restaurants[2]"></app-restaurant-card-simple>
+        <app-restaurant-card-simple [restaurant]="restaurants[3]"></app-restaurant-card-simple>
       </div>
     </div>
   </ng-template>

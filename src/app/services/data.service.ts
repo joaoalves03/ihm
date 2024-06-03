@@ -1,6 +1,5 @@
 import {Injectable} from "@angular/core"
-import {createClient, SupabaseClient} from "@supabase/supabase-js"
-import {environment} from "../../environments/environment"
+import {SupabaseClient} from "@supabase/supabase-js"
 import {Restaurant} from "../objects/restaurant"
 import {Review} from "../objects/review"
 import {DetailedReview} from "../objects/detailed_review"
@@ -19,7 +18,7 @@ export class DataService {
   }
 
   async getRestaurants(): Promise<Restaurant[]> {
-    let { data, error } = await this.supabase
+    let { data} = await this.supabase
       .from('restaurants')
       .select('*')
 
@@ -27,7 +26,7 @@ export class DataService {
   }
 
   async getRestaurant(id: number): Promise<Restaurant> {
-    let { data, error } = await this.supabase
+    let { data } = await this.supabase
       .from('restaurants')
       .select('*')
       .eq('id', id)
@@ -36,16 +35,26 @@ export class DataService {
     return data as Restaurant
   }
 
+  async findRestaurants(query: string): Promise<Restaurant[]> {
+    let { data } = await this.supabase
+      .from('restaurants')
+      .select('*')
+      .ilike('name', `%${query}%`)
+
+    return data as Restaurant[]
+  }
+
   async getReviews(restaurant_id: number): Promise<Review[]> {
-    let { data, error } = await this.supabase
+    let { data } = await this.supabase
       .from('reviews')
       .select('*')
       .eq('restaurant', restaurant_id)
 
     return data as Review[]
   }
+
   async getReview(id: number): Promise<DetailedReview> {
-    let{data, error } = await this.supabase
+    let{ data } = await this.supabase
       .from('detailedreviews')
       .select('*')
       .eq('id', id)
@@ -56,7 +65,7 @@ export class DataService {
 
   async addReview(restaurant: number, user: number, rating: number, text: string){
 
-    const { data, error } = await this.supabase
+    const { data } = await this.supabase
       .from('reviews')
       .insert([
         { user: user, restaurant: restaurant, rating: rating, text: text},
@@ -64,18 +73,4 @@ export class DataService {
       .select()
 
   }
-
-  async searchRestaurants(name: string) {
-    const { data, error } = await this.supabase
-      .from('restaurants')
-      .select('*')
-      .ilike('name', name);
-
-    if (error) {
-      console.error('Erro ao buscar restaurantes:', error);
-      return [];
-    }
-    return data;
-  }
-
 }
