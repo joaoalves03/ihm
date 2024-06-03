@@ -1,8 +1,12 @@
 .profile-picture-wrapper {
   @apply absolute left-1/2 top-1/2 -translate-x-1/2;
 
+  div {
+    @apply w-36 h-36 rounded-full bg-white flex justify-center items-center;
+  }
+
   img {
-    @apply w-36 rounded-full;
+    @apply w-36 h-36 rounded-full object-cover;
   }
 
   span {

@@ -139,7 +139,7 @@ export class DataService {
   }
 
   async deleteFavorite(user_id: string | null, restaurant_id: number) {
-    const {data} = await this.supabase
+    await this.supabase
       .from('favorites')
       .delete()
       .eq('user_id', user_id)
@@ -167,5 +167,21 @@ export class DataService {
       }
     }
     return favoriteRestaurants;
+  }
+
+  async updateProfilePicture(file: File, user_id: string) {
+    await this.supabase.storage.from("profile_pictures").remove([user_id])
+
+    await this.supabase.storage
+      .from("profile_pictures")
+      .upload(user_id, file)
+  }
+
+  getProfilePictureURL(user_id: string) {
+    return this.supabase.storage.from("profile_pictures").getPublicUrl(user_id)
+  }
+
+  async getSignedProfilePictureURL(user_id: string) {
+    return (await this.supabase.storage.from("profile_pictures").createSignedUrl(user_id, 60)).data?.signedUrl
   }
 }
