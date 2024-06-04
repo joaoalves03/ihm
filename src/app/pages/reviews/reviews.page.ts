@@ -27,4 +27,14 @@ export class ReviewsPage implements OnInit {
       this.reviews = await this.data.getDetailedReviews(Number(restaurantId))
     })
   }
+
+  getReviewerPicture(reviewer_id: string) {
+    return this.data.getProfilePictureURL(reviewer_id)
+  }
+
+  onImageError(event: ErrorEvent) {
+    let img = (event.currentTarget as HTMLImageElement)
+    img.onerror = null
+    img.src = "assets/default.jpg"
+  }
 }

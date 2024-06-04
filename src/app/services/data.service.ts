@@ -178,7 +178,7 @@ export class DataService {
   }
 
   getProfilePictureURL(user_id: string) {
-    return this.supabase.storage.from("profile_pictures").getPublicUrl(user_id)
+    return this.supabase.storage.from("profile_pictures").getPublicUrl(user_id).data.publicUrl
   }
 
   async getSignedProfilePictureURL(user_id: string) {

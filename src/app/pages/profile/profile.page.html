@@ -6,10 +6,7 @@
         <ion-spinner></ion-spinner>
       </div>
       <ng-template #profilePicture>
-        <img [src]="profile_picture" alt="" *ngIf="profile_picture?.length != 0, else defaultPicture">
-      </ng-template>
-      <ng-template #defaultPicture>
-        <img src="assets/default.jpg" alt="">
+        <img [src]="profile_picture" alt="">
       </ng-template>
       <span class="material-icons">photo_camera</span>
       <input type="file" id="file-input" accept="image/*" class="hidden">

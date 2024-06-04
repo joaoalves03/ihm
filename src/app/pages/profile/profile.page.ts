@@ -47,6 +47,8 @@ export class ProfilePage implements AfterViewInit {
   }
 
   async refreshProfilePicture() {
-    this.profile_picture = (await this.data.getSignedProfilePictureURL(this.auth.getCurrentUserId()!))!
+    const data = await this.data.getSignedProfilePictureURL(this.auth.getCurrentUserId()!)
+
+    this.profile_picture = data ?? 'assets/default.jpg'
   }
 }
