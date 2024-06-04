@@ -184,4 +184,8 @@ export class DataService {
   async getSignedProfilePictureURL(user_id: string) {
     return (await this.supabase.storage.from("profile_pictures").createSignedUrl(user_id, 60)).data?.signedUrl
   }
+
+  async updateUser(name?: string, email?: string, password?: string) {
+
+  }
 }
