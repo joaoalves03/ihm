@@ -185,7 +185,27 @@ export class DataService {
     return (await this.supabase.storage.from("profile_pictures").createSignedUrl(user_id, 60)).data?.signedUrl
   }
 
-  async updateUser(name?: string, email?: string, password?: string) {
+  async updateUser(name: string, email: string, password: string) {
+    let _data: any = {}
 
+    if(email.length > 0) _data["email"] = email
+    if(password.length > 0) _data["password"] = password
+    if(name.length > 0) {
+      _data["data"] = {}
+      _data["data"]["name"] = name
+    }
+
+    const { data } = await this.supabase.auth.updateUser(_data)
+
+    if(name.length > 0) {
+      delete _data["data"]
+      _data["name"] = name
+    }
+
+    await this.supabase
+      .from("users")
+      .update(_data)
+      .eq("id", data.user!.id)
+      .select()
   }
 }
