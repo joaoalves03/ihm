@@ -1,19 +1,18 @@
 <ion-content [fullscreen]="true">
-  <div class="flex justify-center items-center h-full" *ngIf="restaurants.length === 0, else content">
+  <div class="flex justify-center items-center h-full" *ngIf="restaurants.length === 0; else content">
     <ion-spinner></ion-spinner>
   </div>
 
   <ng-template #content>
     <div class="flex flex-col gap-2 p-4">
       <ion-searchbar placeholder="Pesquisar" (keydown.enter)="search()" (ionInput)="handleInput($event)"></ion-searchbar>
-      <div class="text-2xl font-semibold">{{
-          welcome_message
-        }}
+      <div class="text-2xl font-semibold">
+        {{ welcome_message }}
       </div>
-      <div class="text-xl">Perto de si</div>
+      <div class="text-xl mb-4">Perto de si</div>
       <app-restaurant-card [restaurant]="restaurants[0]"></app-restaurant-card>
-      <div class="text-xl">Sugestões</div>
-      <div class="flex gap-4 overflow-x-auto py-8">
+      <div class="text-xl mt-2 mb-1">Sugestões</div>
+      <div class="flex gap-4 overflow-x-auto py-4">
         <app-restaurant-card-simple [restaurant]="restaurants[1]"></app-restaurant-card-simple>
         <app-restaurant-card-simple [restaurant]="restaurants[2]"></app-restaurant-card-simple>
         <app-restaurant-card-simple [restaurant]="restaurants[3]"></app-restaurant-card-simple>
