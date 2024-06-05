@@ -37,7 +37,7 @@ export class RestaurantLocationPage implements AfterViewInit {
     const marker = L.marker([location[0], location[1]], {
       icon: new L.Icon({
         iconSize: [40, 40],
-        iconUrl: "https://icons.veryicon.com/png/o/object/material-design-icons-1/map-marker-2.png"
+        iconUrl: "assets/marker.png"
       })
     })
 
