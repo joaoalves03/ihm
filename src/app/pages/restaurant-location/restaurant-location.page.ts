@@ -1,7 +1,6 @@
 import {AfterViewInit, Component} from '@angular/core';
 import * as L from 'leaflet'
 import {DataService} from "../../services/data.service"
-import {restaurant} from "ionicons/icons"
 import {Restaurant} from "../../objects/restaurant"
 
 // https://www.digitalocean.com/community/tutorials/angular-angular-and-leaflet
@@ -35,9 +34,16 @@ export class RestaurantLocationPage implements AfterViewInit {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     })
 
-    const marker = L.marker([location[0], location[1]])
+    const marker = L.marker([location[0], location[1]], {
+      icon: new L.Icon({
+        iconSize: [40, 40],
+        iconUrl: "https://icons.veryicon.com/png/o/object/material-design-icons-1/map-marker-2.png"
+      })
+    })
+
       .bindTooltip(this.restaurant?.name!, {
         permanent: true,
+        offset: [0,-20],
         direction: "top"
       })
 
@@ -47,5 +53,11 @@ export class RestaurantLocationPage implements AfterViewInit {
 
   ngAfterViewInit() {
     this.initMap()
+
+    this.map?.whenReady(() => {
+      setTimeout(() => {
+        this.map?.invalidateSize()
+      },100)
+    })
   }
 }
