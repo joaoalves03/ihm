@@ -85,7 +85,7 @@ export class DataService {
   }
 
   async addReview(restaurant: number, user: string, rating: number, text: string){
-    await this.supabase
+    return this.supabase
       .from('reviews')
       .insert([
         { user: user, restaurant: restaurant, rating: rating, text: text},
@@ -206,6 +206,29 @@ export class DataService {
       .from("users")
       .update(_data)
       .eq("id", data.user!.id)
+      .select()
+  }
+
+  async uploadRestaurantImages(restaurant_id: number, review_id: number, images: { b64: string, file: File }[]) {
+    let image_ids: string[] = []
+
+    for(const [i, image] of images.entries()) {
+      const { data } = await this.supabase
+        .storage
+        .from("restaurant_photos")
+        .upload(`${restaurant_id}_${review_id}_${i}`, image.file, {
+          contentType: 'image/*'
+        })
+
+      // @ts-ignore
+      image_ids.push(data!["id"])
+    }
+
+    await this.supabase
+      .from("review_images")
+      .insert(image_ids.map(x => {
+        return {review: review_id, image: x}
+      }))
       .select()
   }
 }

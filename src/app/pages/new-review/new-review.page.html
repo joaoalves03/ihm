@@ -17,7 +17,9 @@
   </div>
 
   <div class="flex flex-col mx-16 gap-1">
-    <ion-button>Adicionar imagem</ion-button>
+    <input type="file" id="file-input" accept="image/*" class="hidden">
+    <img *ngFor="let image of images" [src]="image.b64" alt="">
+    <ion-button id="image-selection">Adicionar imagem</ion-button>
     <ion-button (click)="addReview()">Submeter</ion-button>
   </div>
 </ion-content>
