@@ -8,6 +8,7 @@ import { RestaurantDetailsPageRoutingModule } from './restaurant-details-routing
 
 import { RestaurantDetailsPage } from './restaurant-details.page';
 import {RestaurantIconsComponent} from "../../components/restaurant-icons/restaurant-icons.component"
+import {ReviewListItemComponent} from "../../components/review-list-item/review-list-item.component"
 
 @NgModule({
     imports: [
@@ -15,7 +16,8 @@ import {RestaurantIconsComponent} from "../../components/restaurant-icons/restau
         FormsModule,
         IonicModule,
         RestaurantDetailsPageRoutingModule,
-        RestaurantIconsComponent
+        RestaurantIconsComponent,
+        ReviewListItemComponent
     ],
   declarations: [RestaurantDetailsPage]
 })

@@ -1,0 +1,16 @@
+<div class="content" [routerLink]="'/userreview/' + review?.id">
+  <div class="left">
+    <img [src]="getReviewerPicture(review?.reviewer_id!)"
+         (error)="onImageError($event)" alt="">
+    <div>
+      <h3>{{ review?.name }}</h3>
+      <p>{{ review?.text }}</p>
+    </div>
+  </div>
+  <div class="right">
+    <ion-badge slot="end">
+      <div>{{ review?.rating }}</div>
+      <span class="material-icons">star</span>
+    </ion-badge>
+  </div>
+</div>

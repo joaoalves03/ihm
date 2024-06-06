@@ -1,0 +1,33 @@
+.content {
+  @apply flex flex-row justify-between bg-gray-100 items-center p-2 rounded-xl gap-4;
+
+  .left {
+    @apply flex gap-2 truncate;
+
+    img {
+      @apply w-12 h-12 rounded-full object-cover;
+    }
+
+    div {
+      @apply flex flex-col justify-center;
+
+      h3 {
+        @apply font-semibold;
+      }
+
+      p {
+        @apply line-clamp-1 truncate;
+      }
+    }
+  }
+
+  .right {
+    ion-badge {
+      @apply flex items-center justify-center gap-1 px-2;
+
+      div {
+        @apply text-lg;
+      }
+    }
+  }
+}

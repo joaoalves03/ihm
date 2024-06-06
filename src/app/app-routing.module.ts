@@ -59,10 +59,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/navbar/navbar.module').then( m => m.NavbarPageModule)
   },
   {
-    path: 'reviews/:id',
-    loadChildren: () => import('./pages/reviews/reviews.module').then( m => m.ReviewsPageModule)
-  },
-  {
     path: 'userreview/:id',
     loadChildren: () => import('./pages/userreview/userreview.module').then( m => m.UserreviewPageModule)
   },

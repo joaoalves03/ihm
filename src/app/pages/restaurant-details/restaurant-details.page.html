@@ -4,24 +4,24 @@
       <ion-back-button default-href="#"></ion-back-button>
     </ion-buttons>
     <ion-title>Restaurante</ion-title>
-    <!-- Container for the heart icon -->
-    <div class="absolute top-0 right-0 p-1 z-10">
+
+    <div class="heart-container">
       <ion-button fill="clear" (click)="toggleFavorite()">
-        <span class="material-icons text-[--ion-color-primary]" *ngIf="isFavorite">favorite</span>
-        <span class="material-icons text-[--ion-color-primary]" *ngIf="!isFavorite">favorite_border</span>
+        <span class="material-icons" *ngIf="isFavorite">favorite</span>
+        <span class="material-icons" *ngIf="!isFavorite">favorite_border</span>
       </ion-button>
     </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="flex justify-center items-center h-full" *ngIf="restaurant === undefined; else content">
+  <div class="page-spinner" *ngIf="restaurant === undefined; else content">
     <ion-spinner></ion-spinner>
   </div>
 
   <ng-template #content>
-    <div>
-      <div class="flex flex-row items-center justify-between p-4 gap-2">
+    <div class="content">
+      <div class="main">
         <div class="flex flex-col gap-2">
           <div class="font-semibold text-xl">{{ restaurant?.name }}</div>
           <div class="flex flex-row">
@@ -34,42 +34,69 @@
           <span class="material-icons-sharp text-yellow-400">star</span>
         </div>
       </div>
-      <div class="flex w-full justify-start gap-4 overflow-x-scroll px-2 h-48">
-        <div class="w-full h-full flex justify-center items-center" *ngIf="images === undefined">
+      <div class="slideshow">
+        <div class="spinner" *ngIf="images === undefined">
           <ion-spinner></ion-spinner>
         </div>
 
-        <div class="w-full h-full flex justify-center items-center" *ngIf="images?.length == 0, else slideshow">
+        <div class="no-images" *ngIf="images?.length == 0, else slideshow">
           Não existem imagens disponíveis
         </div>
 
         <ng-template #slideshow>
-          <img class="aspect-[4/3] object-cover w-auto h-48 rounded-xl"
-               *ngFor="let image of images" [src]="image" alt="">
+          <img *ngFor="let image of images" [src]="image" alt="">
         </ng-template>
       </div>
-      <div class="flex items-center justify-between p-4">
-        <div class="flex items-center gap-2" (click)="isModalOpen = true">
-          <div class="flex flex-col justify-center items-center">
-            <div class="flex justify-center items-center gap-2">
-              <span class="material-icons text-[--ion-color-primary]">schedule</span>
+      <div class="schedule-location">
+        <div class="schedule" (click)="isModalOpen = true">
+          <div>
+            <div class="state">
+              <span class="material-icons">schedule</span>
               <div>{{ getTodaySchedule() == null ? 'Fechado' : 'Aberto hoje' }}</div>
             </div>
-            <div class="whitespace-pre">{{ getTodaySchedule() }}</div>
+            <div class="schedule">{{ getTodaySchedule() }}</div>
           </div>
-          <span class="material-icons text-[--ion-color-primary]">chevron_right</span>
+          <span class="material-icons">chevron_right</span>
         </div>
-        <div class="flex text-blue-500 gap-2">
+        <div class="location">
           <span class="material-icons">location_on</span>
           <a routerLink="/restaurant-location">Ver localização</a>
         </div>
       </div>
-      <div class="px-4">
+      <div class="accessibility_indicators">
         <app-restaurant-icons [restaurantAccessibility]="restaurant?.accessibility ?? []"></app-restaurant-icons>
       </div>
 
-      <div class="flex justify-center items-center">
-        <ion-button [routerLink]="'/reviews/' + restaurant?.id">Avaliações</ion-button>
+      <div class="reviews">
+        <div *ngIf="reviews === undefined">
+          <ion-spinner></ion-spinner>
+        </div>
+
+        <div class="no-reviews" *ngIf="reviews!.length == 0, else reviewList">
+          <div>Não existem avaliações</div>
+          <div>Porque não adicionar uma?</div>
+          <div class="add-review" routerLink="/new-review">
+            <span class="material-icons">add</span>
+            <div>Avaliar</div>
+          </div>
+        </div>
+
+        <ng-template #reviewList>
+          <div class="review-list">
+            <div class="reviews-info">
+              <div class="review-number">
+                {{ reviews?.length }} {{ reviews?.length === 1 ? 'avaliação' : 'avaliações' }}
+              </div>
+              <div class="add-review" routerLink="/new-review">
+                <span class="material-icons">add</span>
+                <div>Avaliar</div>
+              </div>
+            </div>
+
+            <app-review-list-item *ngFor="let review of reviews" [review]="review"/>
+          </div>
+
+        </ng-template>
       </div>
     </div>
   </ng-template>
@@ -86,9 +113,10 @@
       </ion-header>
       <ion-content>
         <div class="flex flex-col gap-4 p-4">
-          <div class="grid grid-cols-2 text-center items-center" *ngFor="let schedule of restaurant?.schedule; index as i">
+          <div class="grid grid-cols-2 text-center items-center"
+               *ngFor="let schedule of restaurant?.schedule; index as i">
             <div> {{ diasDaSemana[i] }}</div>
-            <div class="whitespace-pre">{{schedule === null ? 'Fechado' : schedule }}</div>
+            <div class="whitespace-pre">{{ schedule === null ? 'Fechado' : schedule }}</div>
           </div>
         </div>
       </ion-content>

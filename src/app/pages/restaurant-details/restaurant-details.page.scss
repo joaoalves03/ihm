@@ -1,0 +1,103 @@
+.heart-container {
+  @apply absolute top-0 right-0 p-1 z-10;
+
+  ion-button {
+    span {
+      @apply text-[--ion-color-primary];
+    }
+  }
+}
+
+.page-spinner {
+  @apply flex justify-center items-center h-full;
+}
+
+.content {
+  .main {
+    @apply flex flex-row items-center justify-between p-4 gap-2;
+  }
+
+  .slideshow {
+    @apply flex w-full justify-start gap-4 overflow-x-scroll px-2 h-48;
+
+    .spinner {
+      @apply w-full h-full flex justify-center items-center;
+    }
+
+    .no-images {
+      @apply w-full h-full flex justify-center items-center text-gray-400;
+    }
+
+    img {
+      @apply aspect-[4/3] object-cover w-auto h-48 rounded-xl;
+    }
+  }
+
+  .schedule-location {
+    @apply flex items-center justify-between p-4;
+
+    .schedule {
+      @apply flex items-center gap-2;
+
+      div {
+        @apply flex flex-col justify-center items-center;
+
+        .state {
+          @apply flex flex-row justify-center items-center gap-2;
+
+          span {
+            @apply text-[--ion-color-primary];
+          }
+        }
+
+        .schedule {
+          @apply whitespace-pre;
+        }
+      }
+
+      span {
+        @apply text-[--ion-color-primary];
+      }
+    }
+
+    .location {
+      @apply flex text-blue-500 gap-1;
+    }
+  }
+
+  .accessibility_indicators {
+    @apply px-4;
+  }
+
+  .reviews {
+    @apply flex flex-col justify-center items-center px-2;
+
+    .no-reviews {
+      @apply flex flex-col items-center justify-center text-gray-400;
+
+      .add-review {
+        @apply text-[--ion-color-primary] flex gap-1 justify-center;
+      }
+    }
+
+    .review-list {
+      @apply flex flex-col gap-2 w-full py-2;
+
+      .reviews-info {
+        @apply flex justify-between px-2;
+
+        .review-number {
+          @apply text-gray-400 font-medium flex justify-center;
+        }
+
+        .add-review {
+          @apply text-[--ion-color-primary] flex gap-1 justify-center;
+        }
+      }
+
+      app-review-list-item {
+        @apply w-full;
+      }
+    }
+  }
+}

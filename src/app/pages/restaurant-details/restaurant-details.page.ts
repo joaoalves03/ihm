@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Restaurant} from '../../objects/restaurant';
 import {DataService} from '../../services/data.service';
 import {AuthService} from '../../services/auth.service';
+import {DetailedReview} from "../../objects/detailed_review"
 
 @Component({
   selector: 'app-restaurant-details',
@@ -12,9 +13,10 @@ import {AuthService} from '../../services/auth.service';
 export class RestaurantDetailsPage implements AfterViewInit {
   diasDaSemana = ["Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado", "Domingo"]
 
-  restaurant?: Restaurant;
-  isFavorite: boolean = false;
+  restaurant?: Restaurant
+  isFavorite: boolean = false
   images?: string[]
+  reviews?: DetailedReview[]
 
   isModalOpen = false
 
@@ -39,6 +41,7 @@ export class RestaurantDetailsPage implements AfterViewInit {
       }
 
       this.images = await this.data.getRestaurantImages(restaurantId)
+      this.reviews = await this.data.getDetailedReviews(restaurantId)
     });
   }
 
