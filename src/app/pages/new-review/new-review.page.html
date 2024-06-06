@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="flex text-center items-center justify-center text-3xl py-4">Avaliar "{{restaurant?.name}}"</div>
+  <div class="flex text-center items-center justify-center text-3xl pt-8">Avaliar "{{restaurant?.name}}"</div>
 
   <app-star-rating (ratingUpdated)="updateRating($event)"></app-star-rating>
 
@@ -16,9 +16,17 @@
     <ion-textarea [(ngModel)]="reviewText" rows="9" class="bg-gray-300 h-64 rounded-2xl px-4 " placeholder="Escreva o que achou sobre este restaurante"></ion-textarea>
   </div>
 
-  <div class="flex flex-col mx-16 gap-1">
-    <input type="file" id="file-input" accept="image/*" class="hidden">
-    <img *ngFor="let image of images" [src]="image.b64" alt="">
+  <input type="file" id="file-input" accept="image/*" class="hidden">
+  <div class="slideshow">
+    <div class="no-images" *ngIf="images.length == 0">Nenhuma imagem adicionada</div>
+
+    <div class="image-container" *ngFor="let image of images; index as i">
+      <img [src]="image.b64" alt="">
+      <span class="material-icons" (click)="images.splice(i, 1)">close</span>
+    </div>
+  </div>
+
+  <div class="actions">
     <ion-button id="image-selection">Adicionar imagem</ion-button>
     <ion-button (click)="addReview()">Submeter</ion-button>
   </div>

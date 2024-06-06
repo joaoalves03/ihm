@@ -1,0 +1,23 @@
+.slideshow {
+  @apply flex w-full justify-start gap-4 overflow-x-scroll px-2 h-48;
+
+  .no-images {
+    @apply flex w-full h-full justify-center items-center text-gray-400;
+  }
+
+  .image-container {
+    @apply relative aspect-[4/3] w-auto h-48;
+
+    img {
+      @apply w-full h-full object-cover rounded-xl;
+    }
+
+    span {
+      @apply absolute top-1 right-1 bg-gray-200 text-[--ion-color-primary] p-1.5 rounded-full;
+    }
+  }
+}
+
+.actions {
+  @apply flex flex-col mx-16 my-4 gap-1;
+}
