@@ -209,6 +209,14 @@ export class DataService {
       .select()
   }
 
+  async getUserReviews(user_id: string | null): Promise<DetailedReview[]> {
+    let {data} = await this.supabase
+      .from('detailedreview')
+      .select('*')
+      .eq('reviewer_id', user_id);
+    return data as DetailedReview[];
+  }
+
   async uploadRestaurantImages(restaurant_id: number, review_id: number, images: { b64: string, file: File }[]) {
     let image_ids: string[] = []
 
