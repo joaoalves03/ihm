@@ -39,7 +39,7 @@ export class DataService {
 
   async findRestaurants(query: string): Promise<Restaurant[]> {
     let { data } = await this.supabase
-      .from('restaurants')
+      .from('restaurantswithrating')
       .select('*')
       .ilike('name', `%${query}%`)
 
