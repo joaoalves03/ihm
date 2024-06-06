@@ -9,10 +9,10 @@
       <div class="text-2xl font-semibold">
         {{ welcome_message }}
       </div>
-      <div class="text-xl mb-4">Perto de si</div>
+      <div class="text-xl mb-1">Perto de si</div>
       <app-restaurant-card [restaurant]="restaurants[0]"></app-restaurant-card>
       <div class="text-xl mt-2 mb-1">Sugestões</div>
-      <div class="flex gap-4 overflow-x-auto py-4">
+      <div class="flex gap-4 overflow-x-auto pb-4">
         <app-restaurant-card-simple [restaurant]="restaurants[1]"></app-restaurant-card-simple>
         <app-restaurant-card-simple [restaurant]="restaurants[2]"></app-restaurant-card-simple>
         <app-restaurant-card-simple [restaurant]="restaurants[3]"></app-restaurant-card-simple>
