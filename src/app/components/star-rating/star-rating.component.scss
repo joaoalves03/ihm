@@ -25,11 +25,6 @@
   content: "grade";
 }
 
-.rate .half:before {
-  @apply absolute pr-0;
-  content: "star_half";
-}
-
 input:checked ~ label,
 label:hover, label:hover ~ label {
   @apply text-yellow-500;

@@ -36,7 +36,7 @@ export class NewReviewPage {
     await this.data.addReview(
       this.restaurant?.id!,
       this.auth.getCurrentUserId()!,
-      this.rating / 2,
+      this.rating,
       this.reviewText
     )
 
