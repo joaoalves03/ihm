@@ -14,6 +14,7 @@ export class RestaurantDetailsPage implements AfterViewInit {
 
   restaurant?: Restaurant;
   isFavorite: boolean = false;
+  images?: string[]
 
   isModalOpen = false
 
@@ -26,8 +27,8 @@ export class RestaurantDetailsPage implements AfterViewInit {
 
   async ngAfterViewInit() {
     this.route.paramMap.subscribe(async params => {
-      const restaurantId = params.get('id');
-      this.restaurant = await this.data.getRestaurant(Number(restaurantId));
+      const restaurantId = Number(params.get('id'));
+      this.restaurant = await this.data.getRestaurant(restaurantId);
       this.data.selectedRestaurant = this.restaurant;
 
       const user = this.authService.getCurrentUser();
@@ -36,6 +37,8 @@ export class RestaurantDetailsPage implements AfterViewInit {
         const restaurantId = this.restaurant.id;
         this.isFavorite = await this.data.isFavorite(userId, restaurantId);
       }
+
+      this.images = await this.data.getRestaurantImages(restaurantId)
     });
   }
 

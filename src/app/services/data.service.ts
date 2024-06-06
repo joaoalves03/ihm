@@ -231,4 +231,15 @@ export class DataService {
       }))
       .select()
   }
+
+  async getRestaurantImages(restaurant_id: number) {
+    const {data} = await this.supabase
+      .from("restaurantimages")
+      .select("image")
+      .eq("restaurant", restaurant_id)
+
+    if(data == null) return []
+
+    return data.map(x => this.supabase.storage.from("restaurant_photos").getPublicUrl(x.image).data.publicUrl)
+  }
 }
