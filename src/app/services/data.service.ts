@@ -208,4 +208,11 @@ export class DataService {
       .eq("id", data.user!.id)
       .select()
   }
+  async getUserReviews(user_id: string | null): Promise<DetailedReview[]> {
+    let {data} = await this.supabase
+      .from('detailedreview')
+      .select('*')
+      .eq('reviewer_id', user_id);
+    return data as DetailedReview[];
+  }
 }
