@@ -1,0 +1,13 @@
+<div class="slideshow">
+  <div class="spinner" *ngIf="images === undefined">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <div class="no-images" *ngIf="images?.length == 0, else slideshow">
+    Não existem imagens disponíveis
+  </div>
+
+  <ng-template #slideshow>
+    <img *ngFor="let image of images" [src]="image" alt="">
+  </ng-template>
+</div>

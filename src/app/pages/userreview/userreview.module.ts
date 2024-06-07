@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { UserreviewPageRoutingModule } from './userreview-routing.module';
 
 import { UserreviewPage } from './userreview.page';
+import {SlideshowComponent} from "../../components/slideshow/slideshow.component"
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    UserreviewPageRoutingModule
+    UserreviewPageRoutingModule,
+    SlideshowComponent
   ],
   declarations: [UserreviewPage]
 })

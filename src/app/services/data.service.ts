@@ -20,7 +20,7 @@ export class DataService {
   }
 
   async getRestaurants(): Promise<Restaurant[]> {
-    let { data} = await this.supabase
+    let {data} = await this.supabase
       .from('restaurantswithrating')
       .select('*')
 
@@ -28,7 +28,7 @@ export class DataService {
   }
 
   async getRestaurant(id: number): Promise<Restaurant> {
-    let { data } = await this.supabase
+    let {data} = await this.supabase
       .from('restaurantswithrating')
       .select('*')
       .eq('id', id)
@@ -38,7 +38,7 @@ export class DataService {
   }
 
   async findRestaurants(query: string): Promise<Restaurant[]> {
-    let { data } = await this.supabase
+    let {data} = await this.supabase
       .from('restaurantswithrating')
       .select('*')
       .ilike('name', `%${query}%`)
@@ -47,7 +47,7 @@ export class DataService {
   }
 
   async getReviews(restaurant_id: number): Promise<Review[]> {
-    let { data } = await this.supabase
+    let {data} = await this.supabase
       .from('reviews')
       .select('*')
       .eq('restaurant', restaurant_id)
@@ -56,7 +56,7 @@ export class DataService {
   }
 
   async getDetailedReviews(restaurant_id: number): Promise<DetailedReview[]> {
-    let { data } = await this.supabase
+    let {data} = await this.supabase
       .from('detailedreview')
       .select('*')
       .eq('restaurant', restaurant_id)
@@ -65,7 +65,7 @@ export class DataService {
   }
 
   async getReview(id: number): Promise<Review> {
-    let{ data } = await this.supabase
+    let {data} = await this.supabase
       .from('reviews')
       .select('*')
       .eq('id', id)
@@ -75,7 +75,7 @@ export class DataService {
   }
 
   async getDetailedReview(id: number): Promise<DetailedReview> {
-    let{ data } = await this.supabase
+    let {data} = await this.supabase
       .from('detailedreview')
       .select('*')
       .eq('id', id)
@@ -84,11 +84,11 @@ export class DataService {
     return data as DetailedReview
   }
 
-  async addReview(restaurant: number, user: string, rating: number, text: string){
+  async addReview(restaurant: number, user: string, rating: number, text: string) {
     return this.supabase
       .from('reviews')
       .insert([
-        { user: user, restaurant: restaurant, rating: rating, text: text},
+        {user: user, restaurant: restaurant, rating: rating, text: text},
       ])
       .select()
   }
@@ -151,7 +151,7 @@ export class DataService {
     let favoriteRestaurants: Restaurant[] = [];
 
     // Fetch the favorite restaurant IDs for the given user
-    const { data } = await this.supabase
+    const {data} = await this.supabase
       .from('favorites')
       .select('restaurant_id')
       .eq('user_id', user_id);
@@ -188,16 +188,16 @@ export class DataService {
   async updateUser(name: string, email: string, password: string) {
     let _data: any = {}
 
-    if(email.length > 0) _data["email"] = email
-    if(password.length > 0) _data["password"] = password
-    if(name.length > 0) {
+    if (email.length > 0) _data["email"] = email
+    if (password.length > 0) _data["password"] = password
+    if (name.length > 0) {
       _data["data"] = {}
       _data["data"]["name"] = name
     }
 
-    const { data } = await this.supabase.auth.updateUser(_data)
+    const {data} = await this.supabase.auth.updateUser(_data)
 
-    if(name.length > 0) {
+    if (name.length > 0) {
       delete _data["data"]
       _data["name"] = name
     }
@@ -220,8 +220,8 @@ export class DataService {
   async uploadRestaurantImages(restaurant_id: number, review_id: number, images: { b64: string, file: File }[]) {
     let image_ids: string[] = []
 
-    for(const [i, image] of images.entries()) {
-      const { data } = await this.supabase
+    for (const [i, image] of images.entries()) {
+      const {data} = await this.supabase
         .storage
         .from("restaurant_photos")
         .upload(`${restaurant_id}_${review_id}_${i}`, image.file, {
@@ -246,7 +246,18 @@ export class DataService {
       .select("image")
       .eq("restaurant", restaurant_id)
 
-    if(data == null) return []
+    if (data == null) return []
+
+    return data.map(x => this.supabase.storage.from("restaurant_photos").getPublicUrl(x.image).data.publicUrl)
+  }
+
+  async getReviewImages(review_id: number) {
+    const {data} = await this.supabase
+      .from("reviewimagenames")
+      .select("image")
+      .eq("review", review_id)
+
+    if (data == null) return []
 
     return data.map(x => this.supabase.storage.from("restaurant_photos").getPublicUrl(x.image).data.publicUrl)
   }

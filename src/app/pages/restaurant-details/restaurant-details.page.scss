@@ -17,22 +17,6 @@
     @apply flex flex-row items-center justify-between p-4 gap-2;
   }
 
-  .slideshow {
-    @apply flex w-full justify-start gap-4 overflow-x-scroll px-2 h-48;
-
-    .spinner {
-      @apply w-full h-full flex justify-center items-center;
-    }
-
-    .no-images {
-      @apply w-full h-full flex justify-center items-center text-gray-400;
-    }
-
-    img {
-      @apply aspect-[4/3] object-cover w-auto h-48 rounded-xl;
-    }
-  }
-
   .schedule-location {
     @apply flex items-center justify-between p-4;
 

@@ -9,16 +9,18 @@ import { RestaurantDetailsPageRoutingModule } from './restaurant-details-routing
 import { RestaurantDetailsPage } from './restaurant-details.page';
 import {RestaurantIconsComponent} from "../../components/restaurant-icons/restaurant-icons.component"
 import {ReviewListItemComponent} from "../../components/review-list-item/review-list-item.component"
+import {SlideshowComponent} from "../../components/slideshow/slideshow.component"
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        IonicModule,
-        RestaurantDetailsPageRoutingModule,
-        RestaurantIconsComponent,
-        ReviewListItemComponent
-    ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    RestaurantDetailsPageRoutingModule,
+    RestaurantIconsComponent,
+    ReviewListItemComponent,
+    SlideshowComponent
+  ],
   declarations: [RestaurantDetailsPage]
 })
 export class RestaurantDetailsPageModule {
