@@ -47,7 +47,28 @@ export class UserreviewPage implements OnInit {
   }
 
   async updateReviewHelpfulness(value: boolean | null) {
-    if(value == this.helpful) value = null
+    if (value === this.helpful) {
+      if (value) {
+        this.reviewHelpfulnessScore!.helpful -= 1
+      } else if (value === false) {
+        this.reviewHelpfulnessScore!.not_helpful -= 1
+      }
+      value = null;
+    } else {
+      if (value) {
+        this.reviewHelpfulnessScore!.helpful += 1
+      } else if (value === false) {
+        this.reviewHelpfulnessScore!.not_helpful += 1
+      }
+
+      if (this.helpful) {
+        this.reviewHelpfulnessScore!.helpful -= 1
+      } else if (this.helpful === false) {
+        this.reviewHelpfulnessScore!.not_helpful -= 1
+      }
+    }
+
+
 
     this.helpful = value
 
