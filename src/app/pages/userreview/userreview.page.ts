@@ -5,6 +5,7 @@ import {User} from "../../objects/user"
 import {DetailedReview} from "../../objects/detailed_review"
 import {AuthService} from "../../services/auth.service"
 import {ReviewHelpfulness} from "../../objects/reviewHelpfulness"
+import {AlertController} from "@ionic/angular"
 
 @Component({
   selector: 'app-userreview',
@@ -23,7 +24,8 @@ export class UserreviewPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private auth: AuthService,
-    private data: DataService
+    private data: DataService,
+    private alertController: AlertController
   ) { }
 
   ngOnInit() {
@@ -47,6 +49,17 @@ export class UserreviewPage implements OnInit {
   }
 
   async updateReviewHelpfulness(value: boolean | null) {
+    if(this.isOwnReview()) {
+      const alert = await this.alertController.create({
+        header: 'Erro',
+        message: 'Não é possível dar pontuação à sua própria avaliação.',
+        buttons: ['OK']
+      })
+
+      await alert.present()
+      return
+    }
+
     if (value === this.helpful) {
       if (value) {
         this.reviewHelpfulnessScore!.helpful -= 1
@@ -73,5 +86,9 @@ export class UserreviewPage implements OnInit {
     this.helpful = value
 
     await this.data.updateReviewHelpfulness(this.auth.getCurrentUserId()!, this.review?.id!, value)
+  }
+
+  isOwnReview(){
+    return this.user?.id == this.auth.getCurrentUserId()
   }
 }
