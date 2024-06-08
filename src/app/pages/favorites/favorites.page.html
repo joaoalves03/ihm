@@ -15,22 +15,7 @@
   <div class="flex justify-center" *ngIf="userReviews === undefined">
     <ion-spinner></ion-spinner>
   </div>
-  <div *ngFor="let review of userReviews"
-       class="flex flex-row justify-between m-2 bg-gray-100 items-center p-2 rounded-xl gap-4"
-       [routerLink]="'/userreview/' + review.id">
-    <div class="flex gap-2 truncate">
-      <img class="w-12 h-12 rounded-full object-cover" [src]="getReviewerPicture(review.reviewer_id)"
-           (error)="onImageError($event)" alt="">
-      <div class="flex flex-col justify-center">
-        <h3 class="font-semibold">{{ review.name }}</h3>
-        <p class="line-clamp-1 truncate">{{ review.text }}</p>
-      </div>
-    </div>
-    <div>
-      <ion-badge class="flex items-center justify-center gap-1 px-2" slot="end">
-        <div class="text-lg">{{ review.rating }}</div>
-        <span class="material-icons">star</span>
-      </ion-badge>
-    </div>
+  <div class="flex flex-col gap-2 px-2">
+    <app-review-list-item *ngFor="let review of userReviews" [review]="review" />
   </div>
 </ion-content>

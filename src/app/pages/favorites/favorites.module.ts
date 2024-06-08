@@ -8,6 +8,7 @@ import { FavoritesPageRoutingModule } from './favorites-routing.module';
 
 import { FavoritesPage } from './favorites.page';
 import {HomePageModule} from "../home/home.module";
+import {ReviewListItemComponent} from "../../components/review-list-item/review-list-item.component"
 
 @NgModule({
     imports: [
@@ -15,7 +16,8 @@ import {HomePageModule} from "../home/home.module";
         FormsModule,
         IonicModule,
         FavoritesPageRoutingModule,
-        HomePageModule
+        HomePageModule,
+        ReviewListItemComponent
     ],
   declarations: [FavoritesPage]
 })
