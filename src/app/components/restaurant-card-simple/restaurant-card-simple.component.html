@@ -1,4 +1,10 @@
-<div class="w-48" (click)="openRestaurantDetails()">
-  <img class="rounded-t-2xl object-cover" src="https://picsum.photos/200/200" alt=""/>
-  <div class="px-3 py-2 font-bold overflow-hidden">{{ restaurant?.name }}</div>
+<div (click)="openRestaurantDetails()">
+  <div class="w-48 h-48">
+    <div class="flex justify-center items-center" *ngIf="image === undefined">
+      <ion-spinner></ion-spinner>
+    </div>
+    <img *ngIf="image != undefined" class="aspect-square w-48 h-48 rounded-t-2xl object-cover" [src]="image" alt="">
+  </div>
+
+  <div class="w-48 px-3 py-2 font-bold overflow-hidden">{{ restaurant?.name }}</div>
 </div>
