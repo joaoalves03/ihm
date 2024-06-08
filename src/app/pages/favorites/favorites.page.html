@@ -2,8 +2,9 @@
   <!-- Favoritos Section -->
   <div class="text-2xl font-semibold px-6 pt-8 pb-2">Restaurantes favoritos</div>
   <div class="flex gap-4 overflow-x-auto py-8">
-    <div class="flex w-full justify-center" *ngIf="favoriteRestaurants === undefined">
-      <ion-spinner></ion-spinner>
+    <div class="flex w-full justify-center">
+      <ion-spinner *ngIf="favoriteRestaurants === undefined"></ion-spinner>
+      <div class="text-gray-400 font-semibold" *ngIf="favoriteRestaurants?.length == 0">Nenhum restaurante favorito</div>
     </div>
     <app-restaurant-card-simple *ngFor="let restaurant of favoriteRestaurants"
                                 [restaurant]="restaurant"></app-restaurant-card-simple>
@@ -12,8 +13,9 @@
   <!-- Avaliações Section -->
   <div class="text-xl font-semibold p-4">As suas Avaliações</div>
 
-  <div class="flex justify-center" *ngIf="userReviews === undefined">
-    <ion-spinner></ion-spinner>
+  <div class="flex justify-center">
+    <ion-spinner *ngIf="userReviews === undefined"></ion-spinner>
+    <div class="text-gray-400 font-semibold" *ngIf="userReviews?.length == 0">Nenhuma avaliação</div>
   </div>
   <div class="flex flex-col gap-2 px-2">
     <app-review-list-item *ngFor="let review of userReviews" [review]="review" />
