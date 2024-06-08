@@ -305,4 +305,11 @@ export class DataService {
     // @ts-ignore
     return data["helpful"] as boolean
   }
+
+  async deleteReview(review: number) {
+    await this.supabase
+      .from("reviews")
+      .delete()
+      .eq("id", review)
+  }
 }
