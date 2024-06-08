@@ -10,8 +10,8 @@ import { DetailedReview } from "../../objects/detailed_review";
   styleUrls: ['./favorites.page.scss'],
 })
 export class FavoritesPage implements OnInit {
-  favoriteRestaurants: Restaurant[] = [];
-  userReviews: DetailedReview[] = [];
+  favoriteRestaurants?: Restaurant[]
+  userReviews?: DetailedReview[]
 
   constructor(private data: DataService, private authService: AuthService) {}
 
