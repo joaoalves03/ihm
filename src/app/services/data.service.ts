@@ -5,6 +5,7 @@ import {Review} from "../objects/review"
 import {DetailedReview} from "../objects/detailed_review"
 import {AuthService} from "./auth.service"
 import {User} from "../objects/user"
+import {ReviewHelpfulness} from "../objects/reviewHelpfulness"
 
 
 @Injectable({
@@ -260,5 +261,48 @@ export class DataService {
     if (data == null) return []
 
     return data.map(x => this.supabase.storage.from("restaurant_photos").getPublicUrl(x.image).data.publicUrl)
+  }
+
+  async updateReviewHelpfulness(user: string, review: number, helpful: boolean | null) {
+    if (helpful == null) {
+      await this.supabase
+        .from("review_helpfulness")
+        .delete()
+        .eq("user", user)
+        .eq("review", review)
+
+      return
+    }
+
+    await this.supabase
+      .from("review_helpfulness")
+      .upsert({user, review, helpful}, {onConflict: 'user, review'})
+      .select()
+  }
+
+  async getReviewHelpfulnessScore(review: number): Promise<ReviewHelpfulness> {
+    const {data} = await this.supabase
+      .from("reviewhelpfulnessscore")
+      .select("*")
+      .eq("review", review)
+      .single()
+
+    if(data === null) return {helpful: 0, not_helpful: 0}
+
+    return data as ReviewHelpfulness
+  }
+
+  async getReviewHelpfulness(review: number, user: string): Promise<boolean | null> {
+    const {data} = await this.supabase
+      .from("review_helpfulness")
+      .select("helpful")
+      .eq("user", user)
+      .eq("review", review)
+      .single()
+
+    if(data === null) return null
+
+    // @ts-ignore
+    return data["helpful"] as boolean
   }
 }

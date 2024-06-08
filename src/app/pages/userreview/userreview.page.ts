@@ -3,6 +3,8 @@ import {ActivatedRoute} from "@angular/router"
 import {DataService} from "../../services/data.service"
 import {User} from "../../objects/user"
 import {DetailedReview} from "../../objects/detailed_review"
+import {AuthService} from "../../services/auth.service"
+import {ReviewHelpfulness} from "../../objects/reviewHelpfulness"
 
 @Component({
   selector: 'app-userreview',
@@ -13,11 +15,14 @@ export class UserreviewPage implements OnInit {
   review?: DetailedReview
   user?: User
   reviewImages?: string[]
+  reviewHelpfulnessScore?: ReviewHelpfulness
+  helpful?: boolean | null
 
   loading = true
 
   constructor(
     private route: ActivatedRoute,
+    private auth: AuthService,
     private data: DataService
   ) { }
 
@@ -29,11 +34,23 @@ export class UserreviewPage implements OnInit {
       this.user = await this.data.getUserInfo(this.review.reviewer_id)
       this.reviewImages = await this.data.getReviewImages(this.review.id)
 
+      this.reviewHelpfulnessScore = await this.data.getReviewHelpfulnessScore(this.review.id)
+
+      this.helpful = await this.data.getReviewHelpfulness(this.review.id, this.auth.getCurrentUserId()!)
+
       this.loading = false
     })
   }
 
   getReviewerPicture(reviewer_id: string) {
     return this.data.getProfilePictureURL(reviewer_id)
+  }
+
+  async updateReviewHelpfulness(value: boolean | null) {
+    if(value == this.helpful) value = null
+
+    this.helpful = value
+
+    await this.data.updateReviewHelpfulness(this.auth.getCurrentUserId()!, this.review?.id!, value)
   }
 }

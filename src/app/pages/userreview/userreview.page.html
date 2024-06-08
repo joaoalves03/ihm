@@ -30,13 +30,17 @@
       <p>{{ review?.text }}</p>
     </div>
 
-    <app-slideshow [images]="reviewImages" />
+    <app-slideshow [images]="reviewImages"/>
 
-    <div class="m-4">
+    <div class="m-4 flex flex-col justify-center items-center">
       <p class="font-bold">Achou esta avaliação útil?</p>
-      <div class="flex space-x-4 mt-2">
-        <span class="material-icons">thumb_up</span>
-        <span class="material-icons">thumb_down</span>
+      <div class="flex space-x-4 mt-2 items-center">
+        <div>{{ reviewHelpfulnessScore?.helpful }}</div>
+        <span [class]="'material-icons text-4xl ' + (helpful ? 'text-green-500' : '')"
+              (click)="updateReviewHelpfulness(true)">thumb_up</span>
+        <span [class]="'material-icons text-4xl ' + (helpful == false ? 'text-green-500' : '')"
+              (click)="updateReviewHelpfulness(false)">thumb_down</span>
+        <div>{{ reviewHelpfulnessScore?.not_helpful }}</div>
       </div>
     </div>
   </ng-template>
