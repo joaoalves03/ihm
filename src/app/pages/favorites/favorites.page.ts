@@ -1,23 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component} from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { Restaurant } from '../../objects/restaurant';
 import { AuthService } from "../../services/auth.service";
 import { DetailedReview } from "../../objects/detailed_review";
+import {ActivatedRoute} from "@angular/router"
 
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.page.html',
   styleUrls: ['./favorites.page.scss'],
 })
-export class FavoritesPage implements OnInit {
+export class FavoritesPage implements AfterViewInit {
   favoriteRestaurants?: Restaurant[]
   userReviews?: DetailedReview[]
 
-  constructor(private data: DataService, private authService: AuthService) {}
+  constructor(
+    private data: DataService,
+    private authService: AuthService,
+    private route: ActivatedRoute
+  ) {}
 
-  ngOnInit() {
-    this.loadFavoriteRestaurants();
-    this.loadUserReviews();
+  async ngAfterViewInit() {
+    this.route.paramMap.subscribe(async _ => {
+      await this.loadFavoriteRestaurants()
+      await this.loadUserReviews()
+    })
   }
 
   async loadFavoriteRestaurants() {
