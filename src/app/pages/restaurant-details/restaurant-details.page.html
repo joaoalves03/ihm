@@ -75,7 +75,7 @@
               <div class="review-number">
                 {{ reviews?.length }} {{ reviews?.length === 1 ? 'avaliação' : 'avaliações' }}
               </div>
-              <div class="add-review" routerLink="/new-review">
+              <div class="add-review" routerLink="/new-review" *ngIf="!hasAlreadyReviewed()">
                 <span class="material-icons">add</span>
                 <div>Avaliar</div>
               </div>

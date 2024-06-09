@@ -69,4 +69,7 @@ export class RestaurantDetailsPage implements AfterViewInit {
     }
   }
 
+  hasAlreadyReviewed() {
+    return this.reviews?.find(x => x.reviewer_id == this.authService.getCurrentUserId())
+  }
 }
