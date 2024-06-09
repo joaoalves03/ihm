@@ -45,7 +45,12 @@ export class RegisterPage {
       await loading.dismiss()
 
       if (data.error) {
-        await this.showAlert('Erro a registar', data.error.message)
+        if(data.error.message == "Password should be at least 6 characters.")
+          await this.showAlert('Erro a registar', "Palavra-passe deve conter pelo menos 6 carateres")
+        else if (data.error.message == "Unable to validate email address: invalid format")
+          await this.showAlert('Erro a registar', "E-mail inválido")
+
+        else await this.showAlert('Erro a registar', data.error.message)
       } else {
         await this.router.navigateByUrl("/register-complete")
       }
@@ -53,10 +58,10 @@ export class RegisterPage {
   }
 
   async showAlert(header: string, message: string) {
-    await this.alertController.create({
+    await (await this.alertController.create({
       header,
       message,
       buttons: ['OK']
-    })
+    })).present()
   }
 }

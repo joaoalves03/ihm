@@ -44,16 +44,16 @@ export class LoginPage {
     await this.auth.signIn(this.credentials.getRawValue()).then(async (data) => {
       await loading.dismiss()
       if (data.error) {
-        await this.showAlert('Falha ao iniciar sessão', data.error.message)
+        await this.showAlert('Falha ao iniciar sessão', "Credenciais incorretas")
       }
     })
   }
 
   async showAlert(header: string, message: string) {
-    await this.alertController.create({
+    await (await this.alertController.create({
       header,
       message,
       buttons: ['OK']
-    })
+    })).present()
   }
 }
