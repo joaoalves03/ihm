@@ -18,7 +18,6 @@ export class NewReviewPage implements AfterViewInit {
 
   images: { b64: string, file: File }[] = []
 
-
   constructor(
     private data: DataService,
     private auth: AuthService,
@@ -52,7 +51,7 @@ export class NewReviewPage implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    const fileInput: HTMLInputElement = document.getElementById("file-input") as HTMLInputElement
+    const fileInput: HTMLInputElement = document.getElementById("review-file-input") as HTMLInputElement
 
     document.getElementById("image-selection")!.addEventListener("click", () => {
       fileInput.click()

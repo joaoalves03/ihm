@@ -12,7 +12,6 @@ export class ProfilePage implements AfterViewInit {
   name_placeholder = ''
   email_placeholder = ''
 
-
   name = ''
   email = ''
   password = ''
@@ -36,7 +35,7 @@ export class ProfilePage implements AfterViewInit {
   }
 
   async ngAfterViewInit() {
-    const fileInput: HTMLInputElement = document.getElementById("file-input") as HTMLInputElement
+    const fileInput: HTMLInputElement = document.getElementById("profile-file-input") as HTMLInputElement
 
     document.getElementById("profile-picture")!.addEventListener("click", () => {
       fileInput.click()
@@ -55,7 +54,6 @@ export class ProfilePage implements AfterViewInit {
 
   async refreshProfilePicture() {
     const data = await this.data.getSignedProfilePictureURL(this.auth.getCurrentUserId()!)
-
     this.profile_picture = data ?? 'assets/default.jpg'
   }
 
