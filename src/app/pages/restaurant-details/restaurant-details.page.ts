@@ -46,8 +46,9 @@ export class RestaurantDetailsPage implements AfterViewInit {
   }
 
   getTodaySchedule() {
-    const today = new Date().getDay() - 1;
-    return this.restaurant?.schedule[today];
+    let today = new Date().getDay() - 1
+    if(today == -1) today = 6
+    return this.restaurant?.schedule[today]
   }
 
   async toggleFavorite() {
