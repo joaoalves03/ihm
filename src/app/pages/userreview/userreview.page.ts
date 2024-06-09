@@ -118,4 +118,8 @@ export class UserreviewPage implements OnInit {
     img.onerror = null
     img.src = "assets/default.jpg"
   }
+
+  parseDate(date: string) {
+    return new Date(date).toLocaleDateString("pt-PT")
+  }
 }

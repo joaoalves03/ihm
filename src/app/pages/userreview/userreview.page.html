@@ -23,6 +23,7 @@
           <span class="text-2xl mr-2">{{ review?.rating }}</span>
           <span class="material-icons text-yellow-500">star</span>
         </div>
+        <div class="text-gray-400">{{ parseDate(review?.created_at!) }}</div>
       </div>
       <div class="w-20 h-20 rounded-full">
         <img [src]="getReviewerPicture(review?.reviewer_id!)" (error)="onImageError($event)" class="w-full h-full object-cover rounded-full" alt="">
