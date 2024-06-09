@@ -112,4 +112,10 @@ export class UserreviewPage implements OnInit {
       }
     })
   }
+
+  onImageError(event: ErrorEvent) {
+    let img = (event.currentTarget as HTMLImageElement)
+    img.onerror = null
+    img.src = "assets/default.jpg"
+  }
 }
