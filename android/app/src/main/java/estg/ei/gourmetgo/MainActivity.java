@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package estg.ei.gourmetgo;
 
 import com.getcapacitor.BridgeActivity;
 

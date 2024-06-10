@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">ihm-projeto</string>
-    <string name="title_activity_main">ihm-projeto</string>
-    <string name="package_name">io.ionic.starter</string>
-    <string name="custom_url_scheme">io.ionic.starter</string>
+    <string name="app_name">GourmetGo</string>
+    <string name="title_activity_main">GourmetGo</string>
+    <string name="package_name">estg.ei.gourmetgo</string>
+    <string name="custom_url_scheme">estg.ei.gourmetgo</string>
 </resources>

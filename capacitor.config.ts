@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'ihm-projeto',
+  appId: 'estg.ei.gourmetgo',
+  appName: 'GourmetGo',
   webDir: 'www',
   server: {
     androidScheme: 'https'
